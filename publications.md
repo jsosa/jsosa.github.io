@@ -1,7 +1,7 @@
 ---
-layout: page
 title: Publications
-permalink: /publications/
+permalink: publications/
+profile: true
 ---
 
 ## Peer-reviewed articles
