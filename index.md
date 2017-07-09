@@ -7,9 +7,10 @@
 layout: default
 ---
 
-cover page
+I'm a Marie Curie PhD Fellow at the University of Bristol's [Hydrology Group](http://www.bris.ac.uk/geography/research/hydrology/) 
+in the School of Geographical Sciences.
 
-## Last news
+## Latest News
 
 {% for post in site.posts %}
 
