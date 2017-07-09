@@ -9,9 +9,15 @@ layout: default
 
 cover page
 
+## Recent posts
+{% for post in site.posts %}
+   - {{ post.date | date_to_string }} » [{{ post.title }}]({{ site.baseurl }}{{ post.url }})
+
 <div class="item {% if post.star %}star{% endif %}">
     <a class="url" href="{{ site.url }}{{ post.url }}">
         <aside class="date"><time datetime="{{ post.date | date:"%d-%m-%Y" }}">{{ post.date | date: "%b %d %Y" }}</time></aside>
         <h3 class="title">{{ post.title }}</h3>
     </a>
 </div>
+
+{% endfor %}
