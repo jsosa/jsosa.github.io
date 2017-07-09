@@ -9,7 +9,24 @@ layout: default
 
 cover page
 
-## Recent posts
-{% for post in site.posts %}
-   - {{ post.date | date_to_string }} » [{{ post.title }}]({{ site.baseurl }}{{ post.url }})
-{% endfor %}
+{% if site.posts.size == 0 %}
+	<p class="text-center">Nothing published yet!</p>
+{% elsif site.paginate %}
+	{% for post in paginator.posts %}
+		{% if post.category == 'blog' %}
+			{% if post.hidden != true %}
+				{% include blog-post.html %}
+			{% endif %}
+		{% endif %}
+	{% endfor %}
+
+	{% include pagination.html%}
+{% else %}
+	{% for post in site.posts %}
+		{% if post.category == 'blog' %}
+			{% if post.hidden != true %}
+				{% include blog-post.html %}
+			{% endif %}
+		{% endif %}
+	{% endfor %}
+{% endif %}
