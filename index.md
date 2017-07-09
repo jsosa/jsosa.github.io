@@ -9,24 +9,9 @@ layout: default
 
 cover page
 
-{% if site.posts.size == 0 %}
-	<p class="text-center">Nothing published yet!</p>
-{% elsif site.paginate %}
-	{% for post in paginator.posts %}
-		{% if post.category == 'blog' %}
-			{% if post.hidden != true %}
-				{% include blog-post.html %}
-			{% endif %}
-		{% endif %}
-	{% endfor %}
-
-	{% include pagination.html%}
-{% else %}
-	{% for post in site.posts %}
-		{% if post.category == 'blog' %}
-			{% if post.hidden != true %}
-				{% include blog-post.html %}
-			{% endif %}
-		{% endif %}
-	{% endfor %}
-{% endif %}
+<div class="item {% if post.star %}star{% endif %}">
+    <a class="url" href="{{ site.url }}{{ post.url }}">
+        <aside class="date"><time datetime="{{ post.date | date:"%d-%m-%Y" }}">{{ post.date | date: "%b %d %Y" }}</time></aside>
+        <h3 class="title">{{ post.title }}</h3>
+    </a>
+</div>
