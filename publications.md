@@ -6,7 +6,7 @@ permalink: /publications/
 
 ## Peer-reviewed articles
 
-1. **Sosa J.**, L. Cavaleri, J. Portilla (2017). Interaction of ocean surface waves and seamounts. Ocean Dynamics
+1. **Sosa, J.**, Cavaleri, L. & Portilla-Yandún, J. (2017). On the interaction between ocean surface waves and seamounts. Ocean Dynamics. https://doi.org/10.1007/s10236-017-1107-7
 
 2. Portilla J., **J. Sosa**, L. Cavaleri (2013). Wave energy resources: Wave climate and exploitation. J. Renewable Energy, 57, 594605.
 
