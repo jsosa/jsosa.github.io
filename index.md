@@ -7,7 +7,8 @@
 layout: default
 ---
 
-<center><img src="https://jsosa.github.io/dat/sosaphoto.png" width="100"></center>
+<center><img src="https://jsosa.github.io/dat/sosaphoto.png" width="200"></center>
+<center></center>
 
 I'm a Marie Curie PhD Fellow under the [System-Risk](https://system-risk.eu/) project working at the University of Bristol's [Hydrology Group](http://www.bris.ac.uk/geography/research/hydrology/)
 in the School of Geographical Sciences. I hold a MSc in Environmental Fluid Mechanics from the Universite Grenoble Alpes and a BSc in Mechanical Engineering from the Universidad San Francisco de Quito.
