@@ -16,7 +16,7 @@ in the School of Geographical Sciences. I hold a MSc in Environmental Fluid Mech
 
 My Research interests are global meteorology, hydrological modelling, hydrodynamic modelling, flooding, remote sensing, ocean wave modelling, coastal engineering, big data, data analysis and data visualization.
 
-I've worked in geoscience research for more than 5 years. Large expertise working in big datasets (NOAA-GFS, Era-Interim, ESA-GlobWave, Landsat, Sentinels) geo formats (GeoTIFF, NetCDF, GRIB) programming languages (Python, Matlab, Fortran, C++) and big data computing ([Google Earth Engine](https://earthengine.google.com/), [Pangeo](http://pangeo-data.org/)).
+I've worked in geoscience research for more than 5 years. Large expertise working in big datasets (NOAA-GFS, Era-Interim, ESA-GlobWave, Landsat, Sentinels) geo formats (GeoTIFF, NetCDF, GRIB) programming languages (Python, Matlab, Fortran, C++) and Big Data geosciences ([Google Earth Engine](https://earthengine.google.com/), [Pangeo](http://pangeo-data.org/)).
 
 Currently, I'm working on the development of tools to map flood risk across Europe at high resolutions by means of a hydrological-hydraulic modelling chain.
 
