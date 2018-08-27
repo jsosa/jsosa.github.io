@@ -5,7 +5,7 @@ permalink: /cv/
 ---
 
 Last update: 27/AUG/2018  
-Download a PDF version [here](jsosa.github.io/maincv.pdf)
+Download a PDF version [here](http://jsosa.github.io/maincv.pdf)
 
 ## Jeison Sosa
 
@@ -14,7 +14,7 @@ University of Bristol
 Bristol, UK  
 T: +44 746 080 7038  
 E: sosa.jeison@gmail.com | j.sosa@bristol.ac.uk  
-W: [jsosa.github.io](jsosa.github.io) | [twitter.com/jsosatw](twitter.com/jsosatw) | [github.com/jsosa](github.com/jsosa)
+W: [jsosa.github.io](http://jsosa.github.io) | [twitter.com/jsosatw](http://twitter.com/jsosatw) | [github.com/jsosa](http://github.com/jsosa)
 
 # Research interests
 
