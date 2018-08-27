@@ -4,6 +4,9 @@ title: CV
 permalink: /cv/
 ---
 
+Last update 27 Aug 2018
+Download a PDF version [here](jsosa.github.io/maincv.pdf)
+
 ## Jeison Sosa
 
 School of Geographical Sciences  
@@ -33,7 +36,7 @@ Flooding, meteorology, surface waves, remote sensing, python, data visualisation
     - Physical and numerical modelling of different nourishment designs.
     - Hydrological modelling under a World Bank project to investigate sediment supply from rivers into the West African coast.
 * February 2015 - August 2015: Research Assistant, Escuela Politecnica Nacional. Supervisor: Dr Jesus Portilla
-    - Development of OPACOL an operational wave model for the Colombian coasts.
+    - Development of OPCOL an operational wave model for the Colombian coasts.
 * June 2014,  Research Assistant, Istituto di Scienze Marine. Supervisor: Prof Luigi Cavaleri
     - On the interaction between ocean surface waves and seamounts
 * September 2010 - Devember 2014: Research Assistant, Universidad San Francisco de Quito. Supervisor: Dr. Jesus Portilla
@@ -79,10 +82,10 @@ Flooding, meteorology, surface waves, remote sensing, python, data visualisation
 
 * 2016: Marie Curie PhD Fellowship from the European Union’s EU Framework Programme for Research and Innovation Horizon 2020 under Grant Agreement No. 676027
 * 2015: Full Scholarship from Ecuadorian government through SENESCYT to obtain a Master's Degree. Scholarship No. AR2Q-000105-2015
-* 2014: Grant from Istituto di Scienze Marine (ISMAR), collaboration as Research Assistant. Venice, Italy.
-* 2014: Travel Grant from Universidad San Francisco de Quito (USFQ), participation in the WISE Meeting 2014 (Waves in Shallow Water Environments). Reading, UK
-* 2013: Travel Grant from Universidad San Francisco de Quito (USFQ), academic training at ISMAR
-* 2011: Travel Grant from Marine Renewable Energy Center (MREC). Boston, USA
+* 2014: Grant from Istituto di Scienze Marine, collaboration as Research Assistant. Venice, Italy.
+* 2014: Travel Grant from Universidad San Francisco de Quito, participation in the WISE Meeting 2014 (Waves in Shallow Water Environments). Reading, UK
+* 2013: Travel Grant from Universidad San Francisco de Quito, academic training at the Istituto di Scienze Marine
+* 2011: Travel Grant from Marine Renewable Energy Center. Boston, USA
 
 # Languages
 
