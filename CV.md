@@ -4,7 +4,7 @@ title: CV
 permalink: /cv/
 ---
 
-Last update 27 Aug 2018
+Last update: 27/AUG/2018  
 Download a PDF version [here](jsosa.github.io/maincv.pdf)
 
 ## Jeison Sosa
