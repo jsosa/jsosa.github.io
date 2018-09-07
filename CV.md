@@ -39,7 +39,7 @@ Flooding, meteorology, surface waves, remote sensing, python, data visualisation
     - Development of OPCOL an operational wave model for the Colombian coasts.
 * June 2014,  Research Assistant, Istituto di Scienze Marine. Supervisor: Prof Luigi Cavaleri
     - On the interaction between ocean surface waves and seamounts
-* September 2010 - Devember 2014: Research Assistant, Universidad San Francisco de Quito. Supervisor: Dr. Jesus Portilla
+* September 2010 - December 2014: Research Assistant, Universidad San Francisco de Quito. Supervisor: Dr Jesus Portilla
     - Development of OPACE an operational wave model for the Ecuadorian coasts.
 
 # Taching experience
@@ -66,14 +66,17 @@ Flooding, meteorology, surface waves, remote sensing, python, data visualisation
 * WaveWatchIII (ocean waves), advanced user
 * Wflow (rainfall-runoff), advanced user
 * Google Earth Engine, advanced user
+* Mapbox, advanced user
+* OpenStreetMap Overpass API, advanced user
+* Docker, advanced user
 * Python (Expert in big data, data analysis, data visualization):
-    - Cython, GDAL, Pandas, xarray, Dask
+    - Cython, GDAL, Pandas, GeoPandas, xarray, Dask
     - scikit-learn, TensorFlow
-    - Bokeh, Holoviews, Datashader, vega-lite
+    - Bokeh, Holoviews, Datashader, vega-lite, Altair
 * Matlab, advanced user
 * Linux/Clusters, advanced user
 * C++, FORTRAN, advanced user
-* Javascript, medium user
+* Javascript Node.js, medium user
 * openMPI, medium user
 * LATEX, advanced user
 * ArcGIS, QGIS, advanced user
