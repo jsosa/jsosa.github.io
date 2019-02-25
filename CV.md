@@ -18,7 +18,7 @@ W: [jsosa.github.io](http://jsosa.github.io) | [twitter.com/jsosatw](http://twit
 
 # Research interests
 
-Flooding, meteorology, surface waves, remote sensing, python, data visualisation, big data, cloud computing and data analysis
+Flooding, ocean surface waves, remote sensing, geospatial analysis, python, dataviz, bigdata, containers, cloud
 
 # Education
 
@@ -26,19 +26,46 @@ Flooding, meteorology, surface waves, remote sensing, python, data visualisation
 * MSc Environmental Fluid Mechanics, Université Joseph Fourier (2016)
 * BSc Mechanical Engineer, Universidad San Francisco de Quito (2014)
 
+# Technical
+
+* Lisflood-FP (flooding), advanced user
+* Delft3D (coastal engineering), advanced user
+* SWAN (coastal ocean surface waves), advanced user
+* WaveWatchIII (ocean surface waves), advanced user
+* Wflow (rainfall-runoff), advanced user
+* Google Earth Engine, advanced user
+* Mapbox, advanced user
+* OpenStreetMap Overpass API, advanced user
+* Docker, advanced user
+* Python (Expert in big data, data analysis, data visualization):
+    - Cython, GDAL, Pandas, GeoPandas, xarray, Dask
+    - scikit-learn, TensorFlow
+    - Bokeh, Holoviews, Datashader, Altair
+* Matlab, advanced user
+* Linux/Clusters, advanced user
+* C++, FORTRAN, medium user
+* Javascript Node.js, medium user
+* LATEX, advanced user
+* ArcGIS, QGIS, advanced user
+
 # Experience
 
 * September 2017 – present, Early Stage Researcher, University of Bristol. Supervisors: Prof Paul Bates, Dr Jeffrey Neal
-    - Developing software tools to map flood hazard at large scales.
+    - Developing software tools to map flood hazard at continental scales.
+    
 * June 2018, Research visitor, University of Bologna. Supervisors: Prof Attilio Castellarin, Dr Alessio Domeneghetti
     - Flood inundation calibration and validation in the upper Po River.
+    
 * February 2016 - August 2016: Intern, Deltares. Supervisor: Dr Alessio Giardino
     - Physical and numerical modelling of different nourishment designs.
     - Hydrological modelling under a World Bank project to investigate sediment supply from rivers into the West African coast.
+    
 * February 2015 - August 2015: Research Assistant, Escuela Politecnica Nacional. Supervisor: Dr Jesus Portilla
     - Development of OPCOL an operational wave model for the Colombian coasts.
+    
 * June 2014,  Research Assistant, Istituto di Scienze Marine. Supervisor: Prof Luigi Cavaleri
     - On the interaction between ocean surface waves and seamounts
+    
 * September 2010 - December 2014: Research Assistant, Universidad San Francisco de Quito. Supervisor: Dr Jesus Portilla
     - Development of OPACE an operational wave model for the Ecuadorian coasts.
 
@@ -46,6 +73,7 @@ Flooding, meteorology, surface waves, remote sensing, python, data visualisation
 
 * Fall 2017: Demonstrator, University of Bristol
     - An Introduction to GIS and Remote Sensing for Environmental Policy and Management, Masters level
+    
 * 2011 – 2014: Teaching assistant, Universidad San Francisco de Quito
     - Thermodynamics, Undergrad level
     - Fluid Mechanics, Undergrad level
@@ -58,28 +86,9 @@ Flooding, meteorology, surface waves, remote sensing, python, data visualisation
 
 3. Portilla, J., **Sosa, J.** & Cavaleri, L. (2013). Wave energy resources: Wave climate and exploitation. Renewable Energy, 57, 594–605. <https://doi.org/10.1016/j.renene.2013.02.032>
 
-# Computing skills
+# Open source software
 
-* Lisflood-FP (flooding), advanced user
-* Delft3D (coastal engineering), advanced user
-* SWAN (coastal ocean waves), advanced user
-* WaveWatchIII (ocean waves), advanced user
-* Wflow (rainfall-runoff), advanced user
-* Google Earth Engine, advanced user
-* Mapbox, advanced user
-* OpenStreetMap Overpass API, advanced user
-* Docker, advanced user
-* Python (Expert in big data, data analysis, data visualization):
-    - Cython, GDAL, Pandas, GeoPandas, xarray, Dask
-    - scikit-learn, TensorFlow
-    - Bokeh, Holoviews, Datashader, vega-lite, Altair
-* Matlab, advanced user
-* Linux/Clusters, advanced user
-* C++, FORTRAN, advanced user
-* Javascript Node.js, medium user
-* openMPI, medium user
-* LATEX, advanced user
-* ArcGIS, QGIS, advanced user
+Please visit [github.com/jsosa]
 
 # Scholarships and Grants
 
