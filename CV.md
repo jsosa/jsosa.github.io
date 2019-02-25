@@ -51,32 +51,32 @@ Flooding, ocean surface waves, remote sensing, geospatial analysis, python, data
 # Experience
 
 * September 2017 – present, Early Stage Researcher, University of Bristol. Supervisors: Prof Paul Bates, Dr Jeffrey Neal
-    > Developing software tools to map flood hazard at continental scales.
+    * Developing software tools to map flood hazard at continental scales.
     
 * June 2018, Research visitor, University of Bologna. Supervisors: Prof Attilio Castellarin, Dr Alessio Domeneghetti
-    > Flood inundation calibration and validation in the upper Po River.
+    * Flood inundation calibration and validation in the upper Po River.
     
 * February 2016 - August 2016: Intern, Deltares. Supervisor: Dr Alessio Giardino
-    > Physical and numerical modelling of different nourishment designs.
-    > Hydrological modelling under a World Bank project to investigate sediment supply from rivers into the West African coast.
+    * Physical and numerical modelling of different nourishment designs.
+    * Hydrological modelling under a World Bank project to investigate sediment supply from rivers into the West African coast.
     
 * February 2015 - August 2015: Research Assistant, Escuela Politecnica Nacional. Supervisor: Dr Jesus Portilla
-    > Development of OPCOL an operational wave model for the Colombian coasts.
+    * Development of OPCOL an operational wave model for the Colombian coasts.
     
 * June 2014,  Research Assistant, Istituto di Scienze Marine. Supervisor: Prof Luigi Cavaleri
-    > On the interaction between ocean surface waves and seamounts
+    * On the interaction between ocean surface waves and seamounts
     
 * September 2010 - December 2014: Research Assistant, Universidad San Francisco de Quito. Supervisor: Dr Jesus Portilla
-    > Development of OPACE an operational wave model for the Ecuadorian coasts.
+    * Development of OPACE an operational wave model for the Ecuadorian coasts.
 
 # Taching experience
 
 * Fall 2017: Demonstrator, University of Bristol
-    > An Introduction to GIS and Remote Sensing for Environmental Policy and Management, Masters level
+    * An Introduction to GIS and Remote Sensing for Environmental Policy and Management, Masters level
     
 * 2011 – 2014: Teaching assistant, Universidad San Francisco de Quito
-    > Thermodynamics, Undergrad level
-    > Fluid Mechanics, Undergrad level
+    * Thermodynamics, Undergrad level
+    * Fluid Mechanics, Undergrad level
 
 # Peer-reviewed Journal Articles
 
