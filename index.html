@@ -1,17 +1,1004 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Jeison Sosa</title>
-    <meta name="description" content="Jeison Sosa's website">
-    <meta name="author" content="Jeison Sosa">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Geist">
-    <style>html{font-family:geist}body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}a{color:black}</style>
-  </head>
-  <body>
-    <h3>Jeison Sosa</h3>
-    <p>Product Manager at <a href="https://dojo.tech">Dojo</a>.</p>
-    <p>In the past, I worked at the <a href="https://www.ft.com">FT</a> and <a href="https://www.fathom.global">Fathom</a>. I've gained experience in payments, news media, and climate-tech. I'm passionate about building products, venture capital and revenue growth. I hold a <a href="https://scholar.google.com/citations?user=kTGvKsMAAAAJ">PhD</a> in Physical Geography!</p>
-    <p>Connect with me on <a href="https://github.com/jsosa">github</a>, <a href="https://x.com/jsosaxyz">X</a>, <a href="https://www.linkedin.com/in/jsosaxyz/">linkedin</a> or <span style="user-select: none; -webkit-user-select: none; -moz-user-select: none;">me@jsosa.xyz</span></p>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business Model Analyser</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'IBM Plex Mono', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #fafbfc;
+      color: #1a202c;
+      padding: 16px 12px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #718096;
+    }
+
+    /* Form Section */
+    .form-card {
+      background: white;
+      border-radius: 4px;
+      padding: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      margin-bottom: 12px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .form-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #1a202c;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    input {
+      padding: 8px 10px;
+      font-size: 14px;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      font-family: 'IBM Plex Mono', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #10B981;
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.08);
+    }
+
+    .input-hint {
+      font-size: 11px;
+      color: #718096;
+      margin-top: 2px;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 16px;
+    }
+
+    button {
+      padding: 10px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.15s ease-out;
+      font-family: 'IBM Plex Mono', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .btn-primary {
+      background: #10B981;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #059669;
+    }
+
+    .btn-secondary {
+      background: #e2e8f0;
+      color: #1a202c;
+    }
+
+    .btn-secondary:hover {
+      background: #cbd5e0;
+    }
+
+    .btn-squared {
+      background: #1a202c;
+      color: white;
+      border-radius: 0;
+      padding: 10px 16px;
+    }
+
+    .btn-squared:hover {
+      background: #0f1419;
+    }
+
+    /* Status Card */
+    .status-card {
+      background: white;
+      border-radius: 4px;
+      padding: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      margin-bottom: 12px;
+      border-left: 5px solid #10B981;
+      display: none;
+      border: 1px solid #e2e8f0;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .status-card.show {
+      display: flex;
+    }
+
+    .status-indicator {
+      width: 48px;
+      height: 48px;
+      border-radius: 6px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .status-card.strong .status-indicator {
+      background: #d4f5e9;
+    }
+
+    .status-card.viable .status-indicator {
+      background: #f5e8d0;
+    }
+
+    .status-card.at-risk .status-indicator {
+      background: #f5d0d0;
+    }
+
+    .status-card.not-viable .status-indicator {
+      background: #e8e8e8;
+    }
+
+    .status-content {
+      flex: 1;
+    }
+
+    .status-card.strong {
+      border-left-color: #48bb78;
+    }
+
+    .status-card.viable {
+      border-left-color: #d9a539;
+    }
+
+    .status-card.at-risk {
+      border-left-color: #d32f2f;
+    }
+
+    .status-card.not-viable {
+      border-left-color: #cbd5e0;
+    }
+
+    .status-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: #1a202c;
+    }
+
+    .status-summary {
+      font-size: 13px;
+      color: #4b5563;
+      line-height: 1.5;
+    }
+
+    /* Metrics Grid */
+    .metrics-section {
+      display: none;
+    }
+
+    .metrics-section.show {
+      display: block;
+    }
+
+    .metrics-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #1a202c;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .metric-card {
+      background: #fafbfc;
+      border-radius: 4px;
+      padding: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      border-top: 3px solid #e2e8f0;
+      border: 1px solid #e2e8f0;
+      border-top: 3px solid #e2e8f0;
+    }
+
+    .metric-card.healthy {
+      border-top-color: #48bb78;
+    }
+
+    .metric-card.warning {
+      border-top-color: #d9a539;
+    }
+
+    .metric-card.danger {
+      border-top-color: #d32f2f;
+    }
+
+    .metric-name {
+      font-size: 10px;
+      color: #718096;
+      font-weight: 600;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .metric-value {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1a202c;
+      font-family: 'IBM Plex Mono', 'Courier New', monospace;
+      margin-bottom: 2px;
+    }
+
+    .metric-descriptor {
+      font-size: 10px;
+      color: #a0aec0;
+    }
+
+    /* Scenario Mode */
+    .scenario-section {
+      background: white;
+      border-radius: 4px;
+      padding: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      margin-top: 12px;
+      display: none;
+      border: 1px solid #e2e8f0;
+    }
+
+    .scenario-section.show {
+      display: block;
+    }
+
+    .scenario-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #1a202c;
+    }
+
+    .slider-group {
+      margin-bottom: 16px;
+    }
+
+    .slider-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .slider-label-text {
+      color: #374151;
+    }
+
+    .slider-value {
+      color: #10B981;
+      font-weight: 700;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: #e5e7eb;
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #10B981;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #10B981;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    /* Delta Highlighting */
+    .delta {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+
+    .delta.positive {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    .delta.negative {
+      background: #fee2e2;
+      color: #7f1d1d;
+    }
+
+    /* Hidden Details */
+    .details-section {
+      background: white;
+      border-radius: 4px;
+      padding: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      margin-top: 12px;
+      display: none;
+      border: 1px solid #e2e8f0;
+    }
+
+    .details-section.show {
+      display: block;
+    }
+
+    .details-toggle {
+      background: none;
+      border: 1px solid #cbd5e0;
+      color: #10B981;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 16px;
+      margin-bottom: 12px;
+      border-radius: 4px;
+    }
+
+    .details-toggle:hover {
+      background: #f9fafb;
+    }
+
+    .formula-item {
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #e2e8f0;
+      font-size: 12px;
+    }
+
+    .formula-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .formula-name {
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 4px;
+      font-size: 12px;
+    }
+
+    .formula-text {
+      color: #6b7280;
+      font-family: 'IBM Plex Mono', 'Courier New', monospace;
+      background: #fafbfc;
+      padding: 6px 10px;
+      border-radius: 4px;
+      margin-bottom: 4px;
+      overflow-x: auto;
+      font-size: 11px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 24px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .metrics-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .status-card {
+        flex-direction: column;
+        padding: 12px;
+      }
+
+      .form-card {
+        padding: 12px;
+      }
+
+      .button-group {
+        flex-direction: column;
+      }
+
+      button {
+        width: 100%;
+      }
+
+      body {
+        padding: 12px 8px;
+      }
+    }
+
+    .error {
+      color: #d32f2f;
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    .show-formulas-btn {
+      background: none;
+      border: 1px solid #cbd5e0;
+      color: #10B981;
+      padding: 8px 16px;
+      margin-top: 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .show-formulas-btn:hover {
+      background: #f9fafb;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Profitable</h1>
+      <p class="subtitle">Quickly assess whether a new product is viable</p>
+    </header>
+
+    <!-- Input Form -->
+    <div class="form-card">
+      <div class="form-title">Enter Your Business Metrics</div>
+       <div class="form-grid">
+          <div class="form-group">
+            <label for="totalUsers">Total Number of Users</label>
+            <input type="number" id="totalUsers" value="150000" min="0" step="100">
+            <div class="input-hint">Total users you plan to have</div>
+          </div>
+
+         <div class="form-group">
+           <label for="arpu">Annual Revenue Per User (£)</label>
+           <input type="number" id="arpu" value="3500" min="0" step="10">
+           <div class="input-hint">How much are you charging</div>
+         </div>
+
+          <div class="form-group">
+          <label for="cogsPercent">COGS (%)</label>
+          <input type="number" id="cogsPercent" value="38" min="0" max="100" step="1">
+          <div class="input-hint">Cost of goods sold as % of revenue</div>
+        </div>
+
+         <div class="form-group">
+           <label for="cac">CAC (%)</label>
+           <input type="number" id="cac" value="15" min="0" max="100" step="0.1">
+           <div class="input-hint">CAC as a percentage of annual revenue</div>
+         </div>
+
+        <div class="form-group">
+          <label for="annualChurn">Annual Churn Rate (%)</label>
+          <input type="number" id="annualChurn" value="25" min="0" max="100" step="0.1">
+          <div class="input-hint">% of customers lost per year</div>
+        </div>
+
+        <div class="form-group">
+          <label for="opexRatio">Operating Expense Ratio (%)</label>
+          <input type="number" id="opexRatio" value="40" min="0" max="100" step="1">
+          <div class="input-hint">OpEx as % of gross revenue</div>
+        </div>
+
+        <div class="form-group">
+          <label for="growthRate">Growth Rate (YoY %)</label>
+          <input type="number" id="growthRate" value="10" min="0" max="500" step="1">
+          <div class="input-hint">Expected year-over-year growth</div>
+        </div>
+      </div>
+
+      <div id="formError" class="error"></div>
+
+      <div class="button-group">
+        <button class="btn-primary" onclick="calculateMetrics()">Analyze</button>
+        <button class="btn-secondary" onclick="resetForm()">Reset to Defaults</button>
+      </div>
+    </div>
+
+    <!-- Status Card -->
+    <div id="statusCard" class="status-card">
+      <div class="status-indicator"></div>
+      <div class="status-content">
+        <div class="status-title" id="statusTitle"></div>
+        <div class="status-summary" id="statusSummary"></div>
+      </div>
+    </div>
+
+    <!-- Metrics Grid -->
+    <div id="metricsSection" class="metrics-section">
+      <div class="metrics-title">Key Metrics</div>
+      <div class="metrics-grid" id="metricsGrid"></div>
+    </div>
+
+    <!-- Scenario Mode -->
+    <div id="scenarioSection" class="scenario-section">
+      <div class="scenario-title">Tweak Assumptions</div>
+      <p style="margin-bottom: 24px; color: #6b7280; font-size: 14px;">Drag sliders to see how key changes affect your viability verdict</p>
+
+      <div class="slider-group">
+        <div class="slider-label">
+          <span class="slider-label-text">Growth Rate (YoY)</span>
+          <span class="slider-value" id="growthValue">10%</span>
+        </div>
+        <input type="range" id="scenarioGrowth" min="0" max="100" value="10" oninput="updateScenario()">
+      </div>
+
+       <div class="slider-group">
+          <div class="slider-label">
+            <span class="slider-label-text">CAC (%)</span>
+            <span class="slider-value" id="cacValue">15%</span>
+          </div>
+         <input type="range" id="scenarioCAC" min="0" max="100" step="0.1" value="15" oninput="updateScenario()">
+       </div>
+
+      <div class="slider-group">
+        <div class="slider-label">
+          <span class="slider-label-text">Annual Churn Rate</span>
+          <span class="slider-value" id="churnValue">25%</span>
+        </div>
+        <input type="range" id="scenarioChurn" min="0" max="100" step="0.1" value="25" oninput="updateScenario()">
+      </div>
+    </div>
+
+    <!-- Details Section -->
+    <div id="detailsSection" class="details-section">
+      <button class="show-formulas-btn" onclick="toggleDetails()">Show Formulas</button>
+      <div id="formulasContent" style="display: none; margin-top: 16px;">
+        <div id="formulasList"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+      // Default values
+      const defaults = {
+        totalUsers: 150000,
+        cogsPercent: 38,
+        cac: 15,
+        annualChurn: 25,
+        arpu: 3500,
+        opexRatio: 40,
+        growthRate: 10
+      };
+
+    let currentMetrics = { ...defaults };
+    let baselineMetrics = null; // For delta comparison
+
+     function getInputValues() {
+       return {
+         totalUsers: parseFloat(document.getElementById('totalUsers').value) || 0,
+         cogsPercent: parseFloat(document.getElementById('cogsPercent').value) || 0,
+         cac: parseFloat(document.getElementById('cac').value) || 0,
+         annualChurn: parseFloat(document.getElementById('annualChurn').value) || 0,
+         arpu: parseFloat(document.getElementById('arpu').value) || 0,
+         opexRatio: parseFloat(document.getElementById('opexRatio').value) || 0,
+         growthRate: parseFloat(document.getElementById('growthRate').value) || 0
+       };
+     }
+
+     function calculateMetrics() {
+       const formError = document.getElementById('formError');
+       formError.textContent = '';
+
+       const inputs = getInputValues();
+
+       // Validation
+       if (inputs.totalUsers <= 0) {
+         formError.textContent = 'Total Users must be greater than 0';
+         return;
+       }
+
+       currentMetrics = inputs;
+       baselineMetrics = null; // Reset baseline for new analysis
+
+       renderResults(inputs);
+
+      // Update scenario sliders to match current inputs
+      document.getElementById('scenarioGrowth').value = inputs.growthRate;
+      document.getElementById('scenarioCAC').value = inputs.cac;
+      document.getElementById('scenarioChurn').value = inputs.annualChurn;
+      updateScenarioLabels(inputs);
+
+      baselineMetrics = calculateAllMetrics(inputs);
+    }
+
+       function calculateAllMetrics(inputs) {
+          const totalUsers = inputs.totalUsers;
+          const arpu = inputs.arpu;
+          const grossRevenue = totalUsers * arpu; // Calculate from users and ARPU
+          const cogsPercent = inputs.cogsPercent / 100;
+          const cacPercent = inputs.cac / 100; // CAC is now a percentage
+          const annualChurn = inputs.annualChurn / 100;
+          const opexRatio = inputs.opexRatio / 100;
+          const growthRate = inputs.growthRate;
+
+         // Tier 1: Profitability
+          const cogsCosts = grossRevenue * cogsPercent;
+          const netRevenue = grossRevenue - cogsCosts;
+          const operatingCosts = grossRevenue * opexRatio;
+          const netIncome = netRevenue - operatingCosts;
+          const netMarginPercent = (netIncome / grossRevenue) * 100;
+
+          // Tier 2: Customer Economics
+          const monthlyChurn = annualChurn / 12;
+          const customerLifetimeMonths = monthlyChurn > 0 ? Math.min(1 / monthlyChurn, 60) : 60;
+          const cacAmount = grossRevenue * cacPercent; // CAC as % of total revenue
+          const cacPerUser = cacAmount / totalUsers; // CAC per individual user
+          const ltv = (arpu * customerLifetimeMonths / 12 * (1 - cogsPercent)) - cacPerUser;
+          const ltvCacRatio = cacPerUser > 0 ? ltv / cacPerUser : Infinity;
+
+        // Tier 3: Viability Signals
+        const ruleOf40 = growthRate + netMarginPercent;
+        const paybackPeriodMonths = arpu > 0 ? cacPerUser / (arpu * (1 - cogsPercent) / 12) : Infinity;
+      
+      // Unit Economics Score (0-100)
+      let unitEconomicsScore = 0;
+      if (ltvCacRatio >= 5) unitEconomicsScore += 40;
+      else if (ltvCacRatio >= 3) unitEconomicsScore += 30;
+      else if (ltvCacRatio >= 1.5) unitEconomicsScore += 15;
+      
+      if (paybackPeriodMonths <= 12) unitEconomicsScore += 35;
+      else if (paybackPeriodMonths <= 24) unitEconomicsScore += 20;
+      else unitEconomicsScore += 5;
+
+      if (netMarginPercent >= 20) unitEconomicsScore += 25;
+      else if (netMarginPercent >= 10) unitEconomicsScore += 15;
+      else if (netMarginPercent >= 0) unitEconomicsScore += 5;
+
+      // Viability Verdict
+      let verdict, verdictClass;
+      if (ruleOf40 >= 50 && unitEconomicsScore >= 70 && netMarginPercent >= 10) {
+        verdict = 'Strong Viability';
+        verdictClass = 'strong';
+      } else if (ruleOf40 >= 40 && unitEconomicsScore >= 50 && netMarginPercent >= 0) {
+        verdict = 'Viable';
+        verdictClass = 'viable';
+      } else if (ruleOf40 < 20 || ltvCacRatio < 1.5 || paybackPeriodMonths > 24) {
+        verdict = 'Not Viable';
+        verdictClass = 'not-viable';
+      } else {
+        verdict = 'At Risk';
+        verdictClass = 'at-risk';
+      }
+
+       return {
+          // Profitability
+          netRevenue,
+          operatingCosts,
+          netIncome,
+          netMarginPercent,
+          grossMarginPercent: (1 - cogsPercent) * 100,
+          cogsCosts,
+          grossRevenue,
+
+          // Customer Economics
+          monthlyChurn,
+          customerLifetimeMonths,
+          ltv,
+          ltvCacRatio,
+          cacAmount,
+          cacPerUser,
+
+           // Viability
+           ruleOf40,
+           paybackPeriodMonths,
+           unitEconomicsScore,
+           verdict,
+           verdictClass,
+
+           // Input values (for display in summaries)
+           growthRate,
+           annualChurn: inputs.annualChurn / 100
+         };
+     }
+
+     function renderResults(inputs) {
+       const metrics = calculateAllMetrics(inputs);
+       const grossRevenue = inputs.totalUsers * inputs.arpu; // Calculate gross revenue for display
+
+        // Status Card
+        const statusCard = document.getElementById('statusCard');
+        document.getElementById('statusTitle').textContent = metrics.verdict.toUpperCase();
+       
+       let summary = '';
+       if (metrics.verdictClass === 'strong') {
+         summary = `This model is healthy across growth (${metrics.growthRate}%), profitability (${metrics.netMarginPercent.toFixed(1)}% margin), and customer economics (${metrics.ltvCacRatio.toFixed(1)}:1 LTV:CAC).`;
+       } else if (metrics.verdictClass === 'viable') {
+         summary = `This model shows promise. Growth rate is ${metrics.growthRate}% and unit economics are acceptable. Watch churn (${(metrics.annualChurn * 100).toFixed(1)}%) and margins (${metrics.netMarginPercent.toFixed(1)}%).`;
+       } else if (metrics.verdictClass === 'at-risk') {
+         summary = `This model has concerns. Rule of 40 score is ${metrics.ruleOf40.toFixed(1)} (target: >40). To improve: increase growth rate or reduce operating costs.`;
+       } else {
+         summary = `This model isn't viable as currently structured. Rule of 40 is ${metrics.ruleOf40.toFixed(1)} and LTV:CAC ratio is ${metrics.ltvCacRatio.toFixed(2)}. Major changes needed.`;
+       }
+
+       document.getElementById('statusSummary').textContent = summary;
+       statusCard.className = `status-card show ${metrics.verdictClass}`;
+
+       // Metrics Grid
+       const metricsGrid = document.getElementById('metricsGrid');
+       metricsGrid.innerHTML = '';
+
+         const metricsToShow = [
+           { name: 'Gross Revenue', value: formatCurrency(grossRevenue), target: 'N/A', status: 'healthy' },
+           { name: 'COGS Costs', value: formatCurrency(metrics.cogsCosts), target: 'Low', status: 'healthy' },
+           { name: 'Gross Margin', value: `${metrics.grossMarginPercent.toFixed(1)}%`, target: 'N/A', status: 'healthy' },
+           { name: 'Net Revenue', value: formatCurrency(metrics.netRevenue), target: 'High', status: 'healthy' },
+           { name: 'Operating Costs', value: formatCurrency(metrics.operatingCosts), target: 'Low', status: 'healthy' },
+           { name: 'Net Margin', value: `${metrics.netMarginPercent.toFixed(1)}%`, target: '>10% ideal', status: metrics.netMarginPercent >= 10 ? 'healthy' : (metrics.netMarginPercent >= 0 ? 'warning' : 'danger') },
+           //{ name: 'Net Income', value: formatCurrency(metrics.netIncome), target: 'Positive', status: metrics.netIncome > 0 ? 'healthy' : 'danger' },
+           { name: 'Monthly Churn', value: `${(metrics.monthlyChurn * 100).toFixed(2)}%`, target: '<1% ideal', status: metrics.monthlyChurn < 1 ? 'healthy' : (metrics.monthlyChurn < 2 ? 'warning' : 'danger') },
+           { name: 'Customer Lifetime', value: `${Math.round(metrics.customerLifetimeMonths)} mo`, target: '>24 months', status: metrics.customerLifetimeMonths > 24 ? 'healthy' : 'warning' },
+           { name: 'LTV (Per User)', value: formatCurrency(metrics.ltv), target: '>CAC', status: metrics.ltv > 0 ? 'healthy' : 'danger' },
+           { name: 'CAC (Per User)', value: formatCurrency(metrics.cacPerUser), target: 'Low', status: 'healthy' },
+           { name: 'LTV:CAC Ratio', value: metrics.ltvCacRatio === Infinity ? '∞' : metrics.ltvCacRatio.toFixed(2), target: '>3:1 ideal', status: metrics.ltvCacRatio >= 3 ? 'healthy' : (metrics.ltvCacRatio >= 1.5 ? 'warning' : 'danger') },
+           { name: 'Payback Period', value: `${Math.round(metrics.paybackPeriodMonths)} mo`, target: '<12 mo', status: metrics.paybackPeriodMonths <= 12 ? 'healthy' : (metrics.paybackPeriodMonths <= 24 ? 'warning' : 'danger') },
+           { name: 'Rule of 40', value: metrics.ruleOf40.toFixed(1), target: '>40 healthy', status: metrics.ruleOf40 >= 40 ? 'healthy' : (metrics.ruleOf40 >= 20 ? 'warning' : 'danger') }
+         ];
+
+      metricsToShow.forEach(metric => {
+        const card = document.createElement('div');
+        card.className = `metric-card ${metric.status}`;
+        card.innerHTML = `
+          <div class="metric-name">${metric.name}</div>
+          <div class="metric-value">${metric.value}</div>
+          <div class="metric-descriptor">Target: ${metric.target}</div>
+        `;
+        metricsGrid.appendChild(card);
+      });
+
+      document.getElementById('metricsSection').classList.add('show');
+      document.getElementById('scenarioSection').classList.add('show');
+      document.getElementById('detailsSection').classList.add('show');
+
+      // Store for formulas
+      window.currentCalculations = { inputs, metrics };
+    }
+
+    function updateScenario() {
+      const scenarioGrowth = parseFloat(document.getElementById('scenarioGrowth').value);
+      const scenarioCAC = parseFloat(document.getElementById('scenarioCAC').value);
+      const scenarioChurn = parseFloat(document.getElementById('scenarioChurn').value);
+
+      updateScenarioLabels({ growthRate: scenarioGrowth, cac: scenarioCAC, annualChurn: scenarioChurn });
+
+      const scenarioInputs = {
+        ...currentMetrics,
+        growthRate: scenarioGrowth,
+        cac: scenarioCAC,
+        annualChurn: scenarioChurn
+      };
+
+      const scenarioMetrics = calculateAllMetrics(scenarioInputs);
+
+       // Update status card with delta
+       const statusCard = document.getElementById('statusCard');
+       statusCard.className = `status-card show ${scenarioMetrics.verdictClass}`;
+
+       document.getElementById('statusTitle').textContent = scenarioMetrics.verdict.toUpperCase();
+
+      let summary = '';
+      if (scenarioMetrics.verdictClass === 'strong') {
+        summary = `This model is healthy across growth (${scenarioMetrics.growthRate}%), profitability (${scenarioMetrics.netMarginPercent.toFixed(1)}% margin), and customer economics (${scenarioMetrics.ltvCacRatio.toFixed(1)}:1 LTV:CAC).`;
+      } else if (scenarioMetrics.verdictClass === 'viable') {
+        summary = `This model shows promise. Growth rate is ${scenarioMetrics.growthRate}% and unit economics are acceptable. Watch churn and margins.`;
+      } else if (scenarioMetrics.verdictClass === 'at-risk') {
+        summary = `This model has concerns. Rule of 40 score is ${scenarioMetrics.ruleOf40.toFixed(1)} (target: >40). To improve: increase growth rate or reduce operating costs.`;
+      } else {
+        summary = `This model isn't viable as currently structured. Rule of 40 is ${scenarioMetrics.ruleOf40.toFixed(1)}. Major changes needed.`;
+      }
+
+       document.getElementById('statusSummary').textContent = summary;
+
+       // Rebuild entire metrics grid with updated values
+       const metricsGrid = document.getElementById('metricsGrid');
+       metricsGrid.innerHTML = '';
+
+        const metricsToShow = [
+          { name: 'Gross Revenue', value: formatCurrency(scenarioMetrics.grossRevenue), target: 'N/A', status: 'healthy' },
+          { name: 'COGS Costs', value: formatCurrency(scenarioMetrics.cogsCosts), target: 'Low', status: 'healthy' },
+          { name: 'Net Revenue', value: formatCurrency(scenarioMetrics.netRevenue), target: 'High', status: 'healthy' },
+          { name: 'Operating Costs', value: formatCurrency(scenarioMetrics.operatingCosts), target: 'Low', status: 'healthy' },
+          // { name: 'Net Income', value: formatCurrency(scenarioMetrics.netIncome), target: 'Positive', status: scenarioMetrics.netIncome > 0 ? 'healthy' : 'danger' },
+          { name: 'Net Margin', value: `${scenarioMetrics.netMarginPercent.toFixed(1)}%`, target: '>10% ideal', status: scenarioMetrics.netMarginPercent >= 10 ? 'healthy' : (scenarioMetrics.netMarginPercent >= 0 ? 'warning' : 'danger') },
+          { name: 'Gross Margin', value: `${scenarioMetrics.grossMarginPercent.toFixed(1)}%`, target: 'N/A', status: 'healthy' },
+          { name: 'Monthly Churn', value: `${(scenarioMetrics.monthlyChurn * 100).toFixed(2)}%`, target: '<1% ideal', status: scenarioMetrics.monthlyChurn < 1 ? 'healthy' : (scenarioMetrics.monthlyChurn < 2 ? 'warning' : 'danger') },
+          { name: 'Customer Lifetime', value: `${Math.round(scenarioMetrics.customerLifetimeMonths)} mo`, target: '>24 months', status: scenarioMetrics.customerLifetimeMonths > 24 ? 'healthy' : 'warning' },
+          { name: 'CAC (Per User)', value: formatCurrency(scenarioMetrics.cacPerUser), target: 'Low', status: 'healthy' },
+          { name: 'LTV (Per User)', value: formatCurrency(scenarioMetrics.ltv), target: '>CAC', status: scenarioMetrics.ltv > 0 ? 'healthy' : 'danger' },
+          { name: 'LTV:CAC Ratio', value: scenarioMetrics.ltvCacRatio === Infinity ? '∞' : scenarioMetrics.ltvCacRatio.toFixed(2), target: '>3:1 ideal', status: scenarioMetrics.ltvCacRatio >= 3 ? 'healthy' : (scenarioMetrics.ltvCacRatio >= 1.5 ? 'warning' : 'danger') },
+          { name: 'Payback Period', value: `${Math.round(scenarioMetrics.paybackPeriodMonths)} mo`, target: '<12 mo', status: scenarioMetrics.paybackPeriodMonths <= 12 ? 'healthy' : (scenarioMetrics.paybackPeriodMonths <= 24 ? 'warning' : 'danger') },
+          { name: 'Rule of 40', value: scenarioMetrics.ruleOf40.toFixed(1), target: '>40 healthy', status: scenarioMetrics.ruleOf40 >= 40 ? 'healthy' : (scenarioMetrics.ruleOf40 >= 20 ? 'warning' : 'danger') }
+        ];
+
+       metricsToShow.forEach(metric => {
+         const card = document.createElement('div');
+         card.className = `metric-card ${metric.status}`;
+         card.innerHTML = `
+           <div class="metric-name">${metric.name}</div>
+           <div class="metric-value">${metric.value}</div>
+           <div class="metric-descriptor">Target: ${metric.target}</div>
+         `;
+         metricsGrid.appendChild(card);
+       });
+    }
+
+      function updateScenarioLabels(inputs) {
+        document.getElementById('growthValue').textContent = `${inputs.growthRate}%`;
+        document.getElementById('cacValue').textContent = `${inputs.cac.toFixed(1)}%`;
+        document.getElementById('churnValue').textContent = `${inputs.annualChurn.toFixed(1)}%`;
+      }
+
+    function toggleDetails() {
+      const content = document.getElementById('formulasContent');
+      const btn = document.querySelector('.show-formulas-btn');
+      
+      if (content.style.display === 'none') {
+        content.style.display = 'block';
+        btn.textContent = 'Hide Formulas';
+        renderFormulas();
+      } else {
+        content.style.display = 'none';
+        btn.textContent = 'Show Formulas';
+      }
+    }
+
+    function renderFormulas() {
+      const formulasList = document.getElementById('formulasList');
+      formulasList.innerHTML = `
+        <div class="formula-item">
+          <div class="formula-name">Net Revenue</div>
+          <div class="formula-text">= Gross Revenue × (1 - COGS%)</div>
+        </div>
+        <div class="formula-item">
+          <div class="formula-name">Operating Costs</div>
+          <div class="formula-text">= Gross Revenue × OpEx Ratio%</div>
+        </div>
+        <div class="formula-item">
+          <div class="formula-name">Net Income</div>
+          <div class="formula-text">= Net Revenue - Operating Costs</div>
+        </div>
+        <div class="formula-item">
+          <div class="formula-name">Net Margin %</div>
+          <div class="formula-text">= (Net Income / Gross Revenue) × 100</div>
+        </div>
+        <div class="formula-item">
+          <div class="formula-name">Monthly Churn</div>
+          <div class="formula-text">= Annual Churn ÷ 12</div>
+        </div>
+        <div class="formula-item">
+          <div class="formula-name">Customer Lifetime (months)</div>
+          <div class="formula-text">= 1 / Monthly Churn (capped at 60 months)</div>
+        </div>
+        <div class="formula-item">
+          <div class="formula-name">Customer Lifetime Value (LTV)</div>
+          <div class="formula-text">= (ARPU × Customer Lifetime × (1 - COGS%)) - CAC per user</div>
+        </div>
+         <div class="formula-item">
+           <div class="formula-name">LTV:CAC Ratio</div>
+           <div class="formula-text">= LTV / CAC (∞ if CAC is £0)</div>
+         </div>
+        <div class="formula-item">
+          <div class="formula-name">Payback Period (months)</div>
+          <div class="formula-text">= CAC / (ARPU × Gross Margin% / 100 / 12)</div>
+        </div>
+        <div class="formula-item">
+          <div class="formula-name">Rule of 40</div>
+          <div class="formula-text">= Growth Rate % + Net Margin %</div>
+        </div>
+        <div class="formula-item">
+          <div class="formula-name">Unit Economics Score (0-100)</div>
+          <div class="formula-text">Weighted combination of LTV:CAC ratio, payback period, and net margin</div>
+        </div>
+      `;
+    }
+
+     function resetForm() {
+       document.getElementById('totalUsers').value = defaults.totalUsers;
+       document.getElementById('cogsPercent').value = defaults.cogsPercent;
+       document.getElementById('cac').value = defaults.cac;
+       document.getElementById('annualChurn').value = defaults.annualChurn;
+       document.getElementById('arpu').value = defaults.arpu;
+       document.getElementById('opexRatio').value = defaults.opexRatio;
+       document.getElementById('growthRate').value = defaults.growthRate;
+
+      document.getElementById('formError').textContent = '';
+      document.getElementById('statusCard').classList.remove('show');
+      document.getElementById('metricsSection').classList.remove('show');
+      document.getElementById('scenarioSection').classList.remove('show');
+      document.getElementById('detailsSection').classList.remove('show');
+      document.getElementById('formulasContent').style.display = 'none';
+      document.querySelector('.show-formulas-btn').textContent = 'Show Formulas';
+    }
+
+    function formatCurrency(value) {
+      return new Intl.NumberFormat('en-GB', {
+        style: 'currency',
+        currency: 'GBP',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+      }).format(value);
+    }
+
+    // Trigger analysis on Enter key
+    document.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        calculateMetrics();
+      }
+    });
+  </script>
+</body>
 </html>
