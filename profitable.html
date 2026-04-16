@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Business Model Analyser</title>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Profitable</title>
   <style>
     * {
       margin: 0;
@@ -12,10 +11,15 @@
       box-sizing: border-box;
     }
 
+    html {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: #ffffff;
+    }
+
     body {
-      font-family: 'IBM Plex Mono', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      background: #fafbfc;
-      color: #1a202c;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #ffffff;
+      color: #1a1a1a;
       padding: 16px 12px;
       line-height: 1.6;
     }
@@ -32,13 +36,18 @@
 
     h1 {
       font-size: 28px;
-      font-weight: 700;
+      font-weight: 600;
       margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: -1px;
     }
 
     .subtitle {
       font-size: 14px;
-      color: #718096;
+      color: #666;
+      font-weight: 300;
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
 
     /* Form Section */
@@ -55,7 +64,9 @@
       font-size: 14px;
       font-weight: 600;
       margin-bottom: 12px;
-      color: #1a202c;
+      color: #1a1a1a;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .form-grid {
@@ -73,7 +84,7 @@
     label {
       font-size: 11px;
       font-weight: 600;
-      color: #374151;
+      color: #1a1a1a;
       margin-bottom: 4px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -84,18 +95,18 @@
       font-size: 14px;
       border: 1px solid #e2e8f0;
       border-radius: 4px;
-      font-family: 'IBM Plex Mono', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
 
     input:focus {
       outline: none;
-      border-color: #10B981;
-      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.08);
+      border-color: #000;
+      box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.08);
     }
 
     .input-hint {
       font-size: 11px;
-      color: #718096;
+      color: #999;
       margin-top: 2px;
     }
 
@@ -111,28 +122,29 @@
       font-size: 13px;
       font-weight: 600;
       border: none;
-      border-radius: 4px;
+      /* border-radius: 4px; */
       cursor: pointer;
       transition: all 0.15s ease-out;
-      font-family: 'IBM Plex Mono', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
 
     .btn-primary {
-      background: #10B981;
+      background: #000;
       color: white;
     }
 
     .btn-primary:hover {
-      background: #059669;
+      background: #1a1a1a;
     }
 
     .btn-secondary {
       background: #e2e8f0;
-      color: #1a202c;
+      color: #1a1a1a;
+      border-bottom: 1px solid #000;
     }
 
     .btn-secondary:hover {
-      background: #cbd5e0;
+      font-weight: 700;
     }
 
     .btn-squared {
@@ -153,10 +165,9 @@
       padding: 16px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.08);
       margin-bottom: 12px;
-      border-left: 5px solid #10B981;
+      border-left: 5px solid #000;
       display: none;
       border: 1px solid #e2e8f0;
-      display: flex;
       gap: 16px;
       align-items: flex-start;
     }
@@ -174,6 +185,7 @@
       align-items: center;
       justify-content: center;
       font-size: 24px;
+      background: #f5f5f5;
     }
 
     .status-card.strong .status-indicator {
@@ -216,17 +228,20 @@
       font-size: 16px;
       font-weight: 700;
       margin-bottom: 4px;
-      color: #1a202c;
+      color: #1a1a1a;
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
     }
 
     .status-summary {
       font-size: 13px;
-      color: #4b5563;
+      color: #555;
       line-height: 1.5;
     }
 
     /* Metrics Grid */
     .metrics-section {
+      margin-top: 12px;
       display: none;
     }
 
@@ -238,7 +253,9 @@
       font-size: 14px;
       font-weight: 600;
       margin-bottom: 12px;
-      color: #1a202c;
+      color: #1a1a1a;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     .metrics-grid {
@@ -249,13 +266,13 @@
     }
 
     .metric-card {
-      background: #fafbfc;
+      background: #ffffff;
       border-radius: 4px;
       padding: 12px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-      border-top: 3px solid #e2e8f0;
+      border-top: 3px solid #ddd;
       border: 1px solid #e2e8f0;
-      border-top: 3px solid #e2e8f0;
+      border-top: 3px solid #ddd;
     }
 
     .metric-card.healthy {
@@ -272,7 +289,7 @@
 
     .metric-name {
       font-size: 10px;
-      color: #718096;
+      color: #999;
       font-weight: 600;
       margin-bottom: 6px;
       text-transform: uppercase;
@@ -282,25 +299,21 @@
     .metric-value {
       font-size: 18px;
       font-weight: 700;
-      color: #1a202c;
-      font-family: 'IBM Plex Mono', 'Courier New', monospace;
+      color: #1a1a1a;
+      font-family: 'Courier New', monospace;
       margin-bottom: 2px;
     }
 
     .metric-descriptor {
       font-size: 10px;
-      color: #a0aec0;
+      color: #999;
     }
 
     /* Scenario Mode */
     .scenario-section {
       background: white;
-      border-radius: 4px;
       padding: 16px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-      margin-top: 12px;
       display: none;
-      border: 1px solid #e2e8f0;
     }
 
     .scenario-section.show {
@@ -311,7 +324,9 @@
       font-size: 14px;
       font-weight: 600;
       margin-bottom: 12px;
-      color: #1a202c;
+      color: #1a1a1a;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     .slider-group {
@@ -327,11 +342,13 @@
     }
 
     .slider-label-text {
-      color: #374151;
+      color: #1a1a1a;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .slider-value {
-      color: #10B981;
+      color: #000;
       font-weight: 700;
     }
 
@@ -351,7 +368,7 @@
       width: 20px;
       height: 20px;
       border-radius: 50%;
-      background: #10B981;
+      background: #000;
       cursor: pointer;
       box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
@@ -360,7 +377,7 @@
       width: 20px;
       height: 20px;
       border-radius: 50%;
-      background: #10B981;
+      background: #000;
       cursor: pointer;
       border: none;
       box-shadow: 0 2px 4px rgba(0,0,0,0.2);
@@ -377,13 +394,13 @@
     }
 
     .delta.positive {
-      background: #d1fae5;
-      color: #065f46;
+      background: #f0f0f0;
+      color: #000;
     }
 
     .delta.negative {
-      background: #fee2e2;
-      color: #7f1d1d;
+      background: #f5f5f5;
+      color: #666;
     }
 
     /* Hidden Details */
@@ -403,18 +420,21 @@
 
     .details-toggle {
       background: none;
-      border: 1px solid #cbd5e0;
-      color: #10B981;
+      border: 1px solid #000;
+      color: #000;
       cursor: pointer;
       font-size: 13px;
       font-weight: 600;
       padding: 8px 16px;
       margin-bottom: 12px;
       border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .details-toggle:hover {
       background: #f9fafb;
+      font-weight: 700;
     }
 
     .formula-item {
@@ -432,20 +452,23 @@
 
     .formula-name {
       font-weight: 600;
-      color: #374151;
+      color: #1a1a1a;
       margin-bottom: 4px;
       font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .formula-text {
-      color: #6b7280;
-      font-family: 'IBM Plex Mono', 'Courier New', monospace;
-      background: #fafbfc;
+      color: #555;
+      font-family: 'Courier New', monospace;
+      background: #f9f9f9;
       padding: 6px 10px;
       border-radius: 4px;
       margin-bottom: 4px;
       overflow-x: auto;
       font-size: 11px;
+      border: 1px solid #e2e8f0;
     }
 
     /* Responsive */
@@ -485,25 +508,68 @@
     }
 
     .error {
-      color: #d32f2f;
+      color: #999;
       font-size: 13px;
       margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .show-formulas-btn {
       background: none;
-      border: 1px solid #cbd5e0;
-      color: #10B981;
+      border: 1px solid #000;
+      color: #000;
       padding: 8px 16px;
       margin-top: 12px;
       border-radius: 4px;
       cursor: pointer;
       font-size: 13px;
       font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .show-formulas-btn:hover {
       background: #f9fafb;
+      font-weight: 700;
+    }
+
+    /* Metrics and Tweak Assumptions Side-by-Side */
+    .metrics-tweak-wrapper {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .metrics-tweak-wrapper #scenarioSection {
+      flex: 0 0 33.33%;
+      margin-top: 0;
+      order: 1;
+    }
+
+    .metrics-tweak-wrapper #metricsSection {
+      flex: 0 0 66.66%;
+      margin-bottom: 0;
+      order: 2;
+    }
+
+    /* Responsive - Stack vertically on mobile */
+    @media (max-width: 768px) {
+      .metrics-tweak-wrapper {
+        flex-direction: column;
+      }
+
+      .metrics-tweak-wrapper #scenarioSection {
+        flex: 0 0 auto;
+        margin-top: 0;
+        order: auto;
+      }
+
+      .metrics-tweak-wrapper #metricsSection {
+        flex: 0 0 auto;
+        margin-bottom: 12px;
+        order: auto;
+      }
     }
   </style>
 </head>
@@ -564,7 +630,7 @@
       <div id="formError" class="error"></div>
 
       <div class="button-group">
-        <button class="btn-primary" onclick="calculateMetrics()">Analyze</button>
+        <button class="btn-primary" onclick="calculateMetrics()">Analyse</button>
         <button class="btn-secondary" onclick="resetForm()">Reset to Defaults</button>
       </div>
     </div>
@@ -578,39 +644,42 @@
       </div>
     </div>
 
-    <!-- Metrics Grid -->
-    <div id="metricsSection" class="metrics-section">
-      <div class="metrics-title">Key Metrics</div>
-      <div class="metrics-grid" id="metricsGrid"></div>
-    </div>
-
-    <!-- Scenario Mode -->
-    <div id="scenarioSection" class="scenario-section">
-      <div class="scenario-title">Tweak Assumptions</div>
-      <p style="margin-bottom: 24px; color: #6b7280; font-size: 14px;">Drag sliders to see how key changes affect your viability verdict</p>
-
-      <div class="slider-group">
-        <div class="slider-label">
-          <span class="slider-label-text">Growth Rate (YoY)</span>
-          <span class="slider-value" id="growthValue">10%</span>
-        </div>
-        <input type="range" id="scenarioGrowth" min="0" max="100" value="10" oninput="updateScenario()">
+    <!-- Metrics and Tweak Assumptions Side-by-Side -->
+    <div class="metrics-tweak-wrapper">
+      <!-- Metrics Grid -->
+      <div id="metricsSection" class="metrics-section">
+        <div class="metrics-title">Key Metrics</div>
+        <div class="metrics-grid" id="metricsGrid"></div>
       </div>
 
-       <div class="slider-group">
+      <!-- Scenario Mode -->
+      <div id="scenarioSection" class="scenario-section">
+        <div class="scenario-title">Tweak Assumptions</div>
+        <p style="margin-bottom: 24px; color: #555; font-size: 14px;">Drag sliders to see how key changes affect your viability verdict</p>
+
+        <div class="slider-group">
+          <div class="slider-label">
+            <span class="slider-label-text">Growth Rate (YoY)</span>
+            <span class="slider-value" id="growthValue">10%</span>
+          </div>
+          <input type="range" id="scenarioGrowth" min="0" max="100" value="10" oninput="updateScenario()">
+        </div>
+
+        <div class="slider-group">
           <div class="slider-label">
             <span class="slider-label-text">CAC (%)</span>
             <span class="slider-value" id="cacValue">15%</span>
           </div>
-         <input type="range" id="scenarioCAC" min="0" max="100" step="0.1" value="15" oninput="updateScenario()">
-       </div>
-
-      <div class="slider-group">
-        <div class="slider-label">
-          <span class="slider-label-text">Annual Churn Rate</span>
-          <span class="slider-value" id="churnValue">25%</span>
+          <input type="range" id="scenarioCAC" min="0" max="100" step="0.1" value="15" oninput="updateScenario()">
         </div>
-        <input type="range" id="scenarioChurn" min="0" max="100" step="0.1" value="25" oninput="updateScenario()">
+
+        <div class="slider-group">
+          <div class="slider-label">
+            <span class="slider-label-text">Annual Churn Rate</span>
+            <span class="slider-value" id="churnValue">25%</span>
+          </div>
+          <input type="range" id="scenarioChurn" min="0" max="100" step="0.1" value="25" oninput="updateScenario()">
+        </div>
       </div>
     </div>
 
