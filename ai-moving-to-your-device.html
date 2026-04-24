@@ -14,10 +14,8 @@
       <h1>Why AI is moving to your device</h1>
       <p class="meta">23 Apr 2026</p>
 
-      <p>The compute has moved. For the past five years, running a language model meant sending your queries to a server farm. Latency, cost, and privacy all flowed through someone else's data center.</p>
-      <p>That's over.</p>
+      <p>For the past five years, running a language model meant sending your queries to a server farm. Latency, cost, and privacy all flowed through someone else's data center.</p>
       <p>Open-source models are now strong enough. Quantization actually works. Apple Silicon has become competitive. The economics have flipped. Running a 7-billion-parameter model on your laptop is no longer a curiosity—it's the rational choice for most applications.</p>
-      <p>This is not hype. This is arithmetic.</p>
 
       <h2>The models finally work</h2>
       <p>Five years ago, open-source models were noticeably worse than GPT-3.5. They were interesting failures. Today, they are not.</p>
@@ -27,7 +25,7 @@
       <p>For chat, summarization, coding, and analysis, these models are good.</p>
 
       <h2>Compression does not mean broken</h2>
-      <p>Quantization—storing model weights at 4 bits instead of 16—sounds like it should destroy performance. Naive compression always does.</p>
+      <p>Quantization, or storing model weights at 4 bits instead of 16, sounds like it should destroy performance. Naive compression always does.</p>
       <p>Quantization does not work naively.</p>
       <p>GPTQ and AWQ are not crude floor-and-ceiling functions. They are careful. They measure information loss channel by channel. They protect the outliers—the weights that carry the most signal. They compress the redundancy.</p>
       <p>The result: a 7-billion-parameter model drops from its standard 16-bit 14 GB baseline down to just 3.5 GB. A quality loss of 2–3%. No retraining needed.</p>
@@ -84,49 +82,50 @@
       <h2>References & sources</h2>
       <p class="ref">This essay synthesises research from 42 primary sources across academic papers, technical documentation, and framework analysis.</p>
 
-      <p class="ref">[1] "Mistral 7B Efficiency Breakthrough" (2024-04-23). Mistral-7B architecture and benchmarking data. <em>Open LLM Leaderboard</em>. Benchmark: 60% MMLU, competitive code generation performance.</p>
-      <p class="ref">[2] "Llama 2: Open Foundation and Fine-Tuned Chat Models" (2024-04-23). Meta's Llama 2 model family and performance characteristics. <em>arXiv / Meta Research</em>. Llama3-8B scores 66% MMLU.</p>
-      <p class="ref">[3] "Qwen Parameter Efficiency Breakthrough" (2024-04-23). Alibaba Qwen model efficiency and claimed parameter-efficiency improvements. <em>HuggingFace Model Card</em>.</p>
-      <p class="ref">[4] "Kimi K2.6: Chinese Efficiency" (2024-04-23). Deepseek's Kimi K2.6 ultra-small model claims and benchmarking. <em>OpenLLM Leaderboard</em>.</p>
-      <p class="ref">[5] "Phi-3: Small Model Efficiency" (2024-04-23). Microsoft's Phi-3 efficiency techniques for small models. <em>Microsoft Research</em>.</p>
-      <p class="ref">[6] "Gemma: Google Safe Models" (2024-04-23). Google's Gemma model family and safety-aligned training. <em>Google AI Research</em>.</p>
-      <p class="ref">[7] "GPTQ Quantization Method" (2026-04-23). Block-wise quantization with Hessian information. Enables 4-bit quantization with minimal accuracy loss. <em>arXiv / Frantar et al.</em></p>
-      <p class="ref">[8] "AWQ: Activation-Aware Quantization" (2026-04-23). Activation-aware quantization protecting outlier channels. Achieves 3.5% quality loss at 4-bit with 8× compression. <em>arXiv / Lin et al.</em></p>
-      <p class="ref">[9] "Mixed-Precision Selective Quantization" (2026-04-23). Hybrid quantization strategies for different layers. Trade-offs between speed and quality.</p>
-      <p class="ref">[10] "Quantization Techniques & Benchmarks" (2026-04-23). Comprehensive survey of quantization methods: INT8, INT4, FP16, bfloat16. Performance trade-offs by task (code generation more sensitive than chat/reasoning).</p>
-      <p class="ref">[11] "Practical Quantization Guide" (2026-04-23). End-to-end quantization workflow and tool comparison. GGUF ecosystem adoption.</p>
-      <p class="ref">[12] "bitsandbytes Dynamic Quantization" (2026-04-23). Dynamic quantization in bitsandbytes library. Runtime optimisation techniques.</p>
-      <p class="ref">Apple Silicon & hardware architecture</p>
-      <p class="ref">[13] "Apple Silicon Technical Architecture" (2026-04-23). Unified memory pool (400+ GB/s bandwidth), GPU/CPU/Neural Engine coordination. Architectural advantages for inference.</p>
-      <p class="ref">[14] "Apple Silicon Optimization Techniques" (2026-04-23). KV-cache quantization on M-series, memory layout optimisation, batching strategies. Practical tuning for 50–115 tok/s performance.</p>
-      <p class="ref">[15] "Unified Memory Architecture" (2026-04-23). Technical specification of unified memory design. Eliminates PCIe bottleneck. Comparative analysis vs discrete GPU architectures.</p>
-      <p class="ref">[16] "MLX Framework Architecture & Design" (2026-04-23). Purpose-built framework for Apple Silicon. Lazy evaluation, Metal GPU kernels, NumPy-style API. Achieves 50–115 tok/s on M-series (6–8× faster than PyTorch).</p>
-      <p class="ref">[17] "MLX Performance Benchmarks" (2026-04-23). M1 Pro: 50 tok/s (7B), M3 Max: 115 tok/s. Comparisons with llama.cpp, PyTorch, JAX.</p>
-      <p class="ref">[18] "MLX Ecosystem Integration" (2026-04-23). MLX community, library integrations, fine-tuning support (LoRA), broader ecosystem adoption.</p>
-      <p class="ref">[19] "MLX Developer Experience" (2026-04-23). Onboarding, API simplicity, documentation quality. Comparison with PyTorch/JAX developer friction.</p>
-      <p class="ref">[20] "llama.cpp Architecture & Deployment" (2026-04-23). CPU-optimised inference, SIMD optimisation, quantization kernel implementations. Multi-platform support (macOS, Linux, Windows, mobile).</p>
-      <p class="ref">[21] "Ollama Core Architecture" (2026-04-23). CLI-based LLM interface, model management, API server, cross-platform support. 300+ pre-quantized models available.</p>
-      <p class="ref">[22] "LM Studio Platform Analysis" (2026-04-23). GUI wrapper for local inference, user experience design, non-technical accessibility, model management interface.</p>
-      <p class="ref">[23] "oMLX: Ollama + MLX Integration" (2026-04-23). Performance gains from MLX backend (50% faster on Apple Silicon). Emerging ecosystem integration.</p>
-      <p class="ref">[24] "GGUF Format Specification" (2026-04-23). Binary format design, quantization methods embedded, interoperability standard. Llama.cpp ecosystem backbone.</p>
-      <p class="ref">[25] "GGUF Model Conversion Workflow" (2026-04-23). Converting Hugging Face models to GGUF, quantization options, compatibility verification.</p>
-      <p class="ref">[26] "GGUF Ecosystem Survey" (2026-04-23). Tool adoption, community contributions, model availability. 500+ pre-quantized models in GGUF format.</p>
-      <p class="ref">[27] "Advanced GGUF & llama.cpp Features" (2026-04-23). KV-cache quantization, batching optimisation, backend-specific tuning.</p>
-      <p class="ref">[28] "Local Inference Benchmarking Methodology" (2026-04-23). Measurement best practices, tokens/sec standardisation, time-to-first-token metrics, common pitfalls.</p>
-      <p class="ref">[29] "Local Inference Benchmarks: Performance Data" (2026-04-23). Platform-specific metrics: Apple Silicon M1 Pro (50 tok/s), M3 Max (115 tok/s), CPU baseline, GPU comparison, Raspberry Pi constraints.</p>
-      <p class="ref">[30] "Cost & Energy Analysis" (2026-04-23). Hardware cost ($3,600 M3 Max), electricity consumption, maintenance overhead. Break-even analysis: 12 months at 1M tokens/day, 20–40× cost savings over 3 years.</p>
-      <p class="ref">[31] "Apple Silicon Economic Superiority Thesis" (2026-04-23). Break-even analysis with detailed cost modelling. Verdict: PARTIALLY SUPPORTED — 8–12 month payback (not 2–4 weeks as initially claimed). Suitable for steady workloads (RAG, internal chat, code assistance).</p>
-      <p class="ref">[32] "Model Selection Decision Framework" (2026-04-23). Hardware-to-model mapping, quality-vs-speed trade-offs, task-specific recommendations (chat, code, math, multilingual), cost analysis matrix.</p>
-      <p class="ref">[33] "Use Cases & Production Readiness Assessment" (2026-04-23). When local inference is appropriate: latency-critical, privacy-sensitive, cost-optimisation, offline capability. When cloud APIs remain rational: spiky usage, cutting-edge models, high-volume batch jobs.</p>
-      <p class="ref">[34] "Backend Architecture Comparison" (2026-04-23). llama.cpp vs MLX vs ONNX vs Hugging Face Transformers. Trade-offs: simplicity, performance, flexibility, maintenance.</p>
-      <p class="ref">[35] "Community Ecosystem & Integrations" (2026-04-23). LangChain, LlamaIndex, RAG frameworks, fine-tuning tools, embedding services. Integration landscape for production applications.</p>
-      <p class="ref">[36] "Developer Experience & API Design" (2026-04-23). Ollama API, LM Studio endpoints, MLX Python API. Comparison of ease-of-use for integration into applications.</p>
-      <p class="ref">[37] "Efficient Fine-Tuning Strategies" (2026-04-23). LoRA, QLoRA techniques for local adaptation. Resource-constrained fine-tuning workflows.</p>
-      <p class="ref">[38] "Open LLM Leaderboard Benchmark" (2024-04-23). HuggingFace Open LLM Leaderboard methodology, model rankings, evaluation metrics (MMLU, HumanEval, TruthfulQA, GSM8K).</p>
-      <p class="ref">[39] "KV-Cache Optimisation" (2026-04-23). Key-value cache importance for generation efficiency. Quantization reducing memory by 50–87.5%. Hardware-specific optimisation strategies.</p>
-      <p class="ref">[40] "Quantization Trade-offs: bfloat16 vs float16 vs float32" (2026-04-23). Precision format comparison, computational efficiency, numerical stability trade-offs.</p>
-      <p class="ref">[41] "Attention Mechanisms & Transformer Architecture" (2026-04-23). Core transformer architecture foundations, attention complexity, inference optimisation strategies.</p>
-      <p class="ref">[42] "Rotary Position Embeddings (RoPE) & Token Generation" (2026-04-23). Modern positional encoding techniques, inference-time implications, generation dynamics.</p>
+      <ol class="ref">
+        <li>"Mistral 7B Efficiency Breakthrough" (2024-04-23). Mistral-7B architecture and benchmarking data. <em>Open LLM Leaderboard</em>. Benchmark: 60% MMLU, competitive code generation performance.</li>
+        <li>"Llama 2: Open Foundation and Fine-Tuned Chat Models" (2024-04-23). Meta's Llama 2 model family and performance characteristics. <em>arXiv / Meta Research</em>. Llama3-8B scores 66% MMLU.</li>
+        <li>"Qwen Parameter Efficiency Breakthrough" (2024-04-23). Alibaba Qwen model efficiency and claimed parameter-efficiency improvements. <em>HuggingFace Model Card</em>.</li>
+        <li>"Kimi K2.6: Chinese Efficiency" (2024-04-23). Deepseek's Kimi K2.6 ultra-small model claims and benchmarking. <em>OpenLLM Leaderboard</em>.</li>
+        <li>"Phi-3: Small Model Efficiency" (2024-04-23). Microsoft's Phi-3 efficiency techniques for small models. <em>Microsoft Research</em>.</li>
+        <li>"Gemma: Google Safe Models" (2024-04-23). Google's Gemma model family and safety-aligned training. <em>Google AI Research</em>.</li>
+        <li>"GPTQ Quantization Method" (2026-04-23). Block-wise quantization with Hessian information. Enables 4-bit quantization with minimal accuracy loss. <em>arXiv / Frantar et al.</em></li>
+        <li>"AWQ: Activation-Aware Quantization" (2026-04-23). Activation-aware quantization protecting outlier channels. Achieves 3.5% quality loss at 4-bit with 8× compression. <em>arXiv / Lin et al.</em></li>
+        <li>"Mixed-Precision Selective Quantization" (2026-04-23). Hybrid quantization strategies for different layers. Trade-offs between speed and quality.</li>
+        <li>"Quantization Techniques & Benchmarks" (2026-04-23). Comprehensive survey of quantization methods: INT8, INT4, FP16, bfloat16. Performance trade-offs by task (code generation more sensitive than chat/reasoning).</li>
+        <li>"Practical Quantization Guide" (2026-04-23). End-to-end quantization workflow and tool comparison. GGUF ecosystem adoption.</li>
+        <li>"bitsandbytes Dynamic Quantization" (2026-04-23). Dynamic quantization in bitsandbytes library. Runtime optimisation techniques.</li>
+        <li>"Apple Silicon Technical Architecture" (2026-04-23). Unified memory pool (400+ GB/s bandwidth), GPU/CPU/Neural Engine coordination. Architectural advantages for inference.</li>
+        <li>"Apple Silicon Optimization Techniques" (2026-04-23). KV-cache quantization on M-series, memory layout optimisation, batching strategies. Practical tuning for 50–115 tok/s performance.</li>
+        <li>"Unified Memory Architecture" (2026-04-23). Technical specification of unified memory design. Eliminates PCIe bottleneck. Comparative analysis vs discrete GPU architectures.</li>
+        <li>"MLX Framework Architecture & Design" (2026-04-23). Purpose-built framework for Apple Silicon. Lazy evaluation, Metal GPU kernels, NumPy-style API. Achieves 50–115 tok/s on M-series (6–8× faster than PyTorch).</li>
+        <li>"MLX Performance Benchmarks" (2026-04-23). M1 Pro: 50 tok/s (7B), M3 Max: 115 tok/s. Comparisons with llama.cpp, PyTorch, JAX.</li>
+        <li>"MLX Ecosystem Integration" (2026-04-23). MLX community, library integrations, fine-tuning support (LoRA), broader ecosystem adoption.</li>
+        <li>"MLX Developer Experience" (2026-04-23). Onboarding, API simplicity, documentation quality. Comparison with PyTorch/JAX developer friction.</li>
+        <li>"llama.cpp Architecture & Deployment" (2026-04-23). CPU-optimised inference, SIMD optimisation, quantization kernel implementations. Multi-platform support (macOS, Linux, Windows, mobile).</li>
+        <li>"Ollama Core Architecture" (2026-04-23). CLI-based LLM interface, model management, API server, cross-platform support. 300+ pre-quantized models available.</li>
+        <li>"LM Studio Platform Analysis" (2026-04-23). GUI wrapper for local inference, user experience design, non-technical accessibility, model management interface.</li>
+        <li>"oMLX: Ollama + MLX Integration" (2026-04-23). Performance gains from MLX backend (50% faster on Apple Silicon). Emerging ecosystem integration.</li>
+        <li>"GGUF Format Specification" (2026-04-23). Binary format design, quantization methods embedded, interoperability standard. Llama.cpp ecosystem backbone.</li>
+        <li>"GGUF Model Conversion Workflow" (2026-04-23). Converting Hugging Face models to GGUF, quantization options, compatibility verification.</li>
+        <li>"GGUF Ecosystem Survey" (2026-04-23). Tool adoption, community contributions, model availability. 500+ pre-quantized models in GGUF format.</li>
+        <li>"Advanced GGUF & llama.cpp Features" (2026-04-23). KV-cache quantization, batching optimisation, backend-specific tuning.</li>
+        <li>"Local Inference Benchmarking Methodology" (2026-04-23). Measurement best practices, tokens/sec standardisation, time-to-first-token metrics, common pitfalls.</li>
+        <li>"Local Inference Benchmarks: Performance Data" (2026-04-23). Platform-specific metrics: Apple Silicon M1 Pro (50 tok/s), M3 Max (115 tok/s), CPU baseline, GPU comparison, Raspberry Pi constraints.</li>
+        <li>"Cost & Energy Analysis" (2026-04-23). Hardware cost ($3,600 M3 Max), electricity consumption, maintenance overhead. Break-even analysis: 12 months at 1M tokens/day, 20–40× cost savings over 3 years.</li>
+        <li>"Apple Silicon Economic Superiority Thesis" (2026-04-23). Break-even analysis with detailed cost modelling. Verdict: PARTIALLY SUPPORTED — 8–12 month payback (not 2–4 weeks as initially claimed). Suitable for steady workloads (RAG, internal chat, code assistance).</li>
+        <li>"Model Selection Decision Framework" (2026-04-23). Hardware-to-model mapping, quality-vs-speed trade-offs, task-specific recommendations (chat, code, math, multilingual), cost analysis matrix.</li>
+        <li>"Use Cases & Production Readiness Assessment" (2026-04-23). When local inference is appropriate: latency-critical, privacy-sensitive, cost-optimisation, offline capability. When cloud APIs remain rational: spiky usage, cutting-edge models, high-volume batch jobs.</li>
+        <li>"Backend Architecture Comparison" (2026-04-23). llama.cpp vs MLX vs ONNX vs Hugging Face Transformers. Trade-offs: simplicity, performance, flexibility, maintenance.</li>
+        <li>"Community Ecosystem & Integrations" (2026-04-23). LangChain, LlamaIndex, RAG frameworks, fine-tuning tools, embedding services. Integration landscape for production applications.</li>
+        <li>"Developer Experience & API Design" (2026-04-23). Ollama API, LM Studio endpoints, MLX Python API. Comparison of ease-of-use for integration into applications.</li>
+        <li>"Efficient Fine-Tuning Strategies" (2026-04-23). LoRA, QLoRA techniques for local adaptation. Resource-constrained fine-tuning workflows.</li>
+        <li>"Open LLM Leaderboard Benchmark" (2024-04-23). HuggingFace Open LLM Leaderboard methodology, model rankings, evaluation metrics (MMLU, HumanEval, TruthfulQA, GSM8K).</li>
+        <li>"KV-Cache Optimisation" (2026-04-23). Key-value cache importance for generation efficiency. Quantization reducing memory by 50–87.5%. Hardware-specific optimisation strategies.</li>
+        <li>"Quantization Trade-offs: bfloat16 vs float16 vs float32" (2026-04-23). Precision format comparison, computational efficiency, numerical stability trade-offs.</li>
+        <li>"Attention Mechanisms & Transformer Architecture" (2026-04-23). Core transformer architecture foundations, attention complexity, inference optimisation strategies.</li>
+        <li>"Rotary Position Embeddings (RoPE) & Token Generation" (2026-04-23). Modern positional encoding techniques, inference-time implications, generation dynamics.</li>
+      </ol>
     </article>
 
     <footer>
