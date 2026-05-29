@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>RAG vs Compiled Knowledge · Jay Sosa Wiki</title>
+    <meta name="description" content="Traditional RAG retrieves raw chunks at query time and asks the model to synthesize an answer from scratch. Compiled knowledge uses an intermediate, persistent wiki that has already integrated sources into summaries,...">
+    <meta name="author" content="Jeison Sosa">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="canonical" href="https://jsosa.xyz/wiki/concepts/rag-vs-compiled-knowledge.html">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../wiki.css">
+  </head>
+  <body class="wiki-page wiki-concept">
+    <a class="back-link" href="../index.html">← Wiki index</a>
+    <article>
+      <p class="ref">Concept</p>
+      <h1>RAG vs Compiled Knowledge</h1>
+      <p class="meta">Concept · Updated 2026-05-27 · Confidence: high</p>
+      <div class="wiki-tags"><span>knowledge-base</span><span>llm</span><span>ai</span><span>research</span><span>comparison</span></div>
+      <div class="wiki-content">
+<p>Traditional RAG retrieves raw chunks at query time and asks the model to synthesize an answer from scratch. Compiled knowledge uses an intermediate, persistent wiki that has already integrated sources into summaries, concept pages, entity pages, contradictions, and cross-links.</p>
+<h2 id="rag-pattern">RAG pattern</h2>
+<ul>
+<li>Sources are indexed as chunks.</li>
+<li>Retrieval happens at query time.</li>
+<li>Synthesis is re-created for each question.</li>
+<li>Cross-document insights may be rediscovered repeatedly.</li>
+<li>Little knowledge accumulates between queries unless added manually.</li>
+</ul>
+<h2 id="compiled-knowledge-pattern">Compiled knowledge pattern</h2>
+<ul>
+<li>Sources are first ingested into a structured wiki.</li>
+<li>Synthesis persists as markdown pages.</li>
+<li>Cross-links, contradictions, and summaries accumulate.</li>
+<li>Queries read the compiled layer first.</li>
+<li>Good query answers can become new wiki pages.</li>
+</ul>
+<h2 id="practical-implication">Practical implication</h2>
+<p>For Jay's use cases, compiled knowledge is better for themes that recur over weeks or months: companies, sectors, product patterns, founder/operator ideas, and career positioning. RAG is still useful for large-scale search, but it should augment the wiki later rather than replace it at the start.</p>
+      </div>
+    </article>
+
+    <footer>
+      <span>Generated from Jay's public wiki export</span>
+      <a href="/">jsosa.xyz</a>
+    </footer>
+  </body>
+</html>

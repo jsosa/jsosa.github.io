@@ -1,0 +1,125 @@
+/* Public wiki styles. Generated pages also load ../style.css. */
+
+body.wiki-home,
+body.wiki-listing,
+body.wiki-page {
+  max-width: 760px;
+}
+
+.wiki-counts {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--gray);
+  letter-spacing: 0.04em;
+}
+
+.wiki-card-list {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.wiki-card {
+  display: block;
+  padding: 16px 0 18px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.wiki-card:hover {
+  border-bottom-color: var(--ink);
+}
+
+.wiki-card-title {
+  display: block;
+  font-size: 15px;
+  line-height: 1.4;
+  margin-bottom: 5px;
+}
+
+.wiki-card-description {
+  display: block;
+  color: var(--gray);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.wiki-card-list.compact .wiki-card {
+  padding: 10px 0 12px;
+}
+
+.wiki-directory p {
+  margin-bottom: 10px;
+}
+
+.wiki-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: -30px 0 42px;
+}
+
+.wiki-tags span {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--gray);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 2px 7px;
+  letter-spacing: 0.04em;
+}
+
+.wiki-content ul,
+.wiki-content ol {
+  margin: 0 0 22px 22px;
+  padding: 0;
+}
+
+.wiki-content li {
+  margin: 0 0 8px;
+}
+
+.wiki-content blockquote {
+  margin: 28px 0;
+  padding: 0 0 0 18px;
+  border-left: 1px solid var(--rule);
+  color: var(--gray);
+}
+
+.wiki-content code {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.9em;
+}
+
+.wiki-content pre {
+  overflow-x: auto;
+  padding: 16px;
+  border: 1px solid var(--rule);
+  background: rgba(0, 0, 0, 0.025);
+}
+
+.wiki-related {
+  margin-top: 72px;
+}
+
+.wiki-related ul {
+  columns: 2;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.wiki-related li {
+  break-inside: avoid;
+  margin: 0 0 8px;
+  font-size: 14px;
+}
+
+@media (max-width: 640px) {
+  .wiki-related ul {
+    columns: 1;
+  }
+
+  .wiki-tags {
+    margin-top: -24px;
+  }
+}

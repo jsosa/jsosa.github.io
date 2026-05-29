@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Agent-Maintained Knowledge Base · Jay Sosa Wiki</title>
+    <meta name="description" content="An agent-maintained knowledge base is a repository where the LLM is responsible for the repetitive maintenance work: summarising, filing, cross-linking, updating pages, flagging contradictions, and keeping...">
+    <meta name="author" content="Jeison Sosa">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="canonical" href="https://jsosa.xyz/wiki/concepts/agent-maintained-knowledge-base.html">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../wiki.css">
+  </head>
+  <body class="wiki-page wiki-concept">
+    <a class="back-link" href="../index.html">← Wiki index</a>
+    <article>
+      <p class="ref">Concept</p>
+      <h1>Agent-Maintained Knowledge Base</h1>
+      <p class="meta">Concept · Updated 2026-05-27 · Confidence: high</p>
+      <div class="wiki-tags"><span>knowledge-base</span><span>agent-workflow</span><span>llm</span><span>research</span></div>
+      <div class="wiki-content">
+<p>An agent-maintained knowledge base is a repository where the LLM is responsible for the repetitive maintenance work: summarising, filing, cross-linking, updating pages, flagging contradictions, and keeping indexes/logs current.</p>
+<p>The human remains responsible for source selection, emphasis, taste, and final judgement. The agent handles the maintenance burden that usually causes personal wikis to decay.</p>
+<h2 id="what-the-agent-does">What the agent does</h2>
+<ul>
+<li>Reads new sources and extracts durable claims.</li>
+<li>Updates existing entity and concept pages.</li>
+<li>Creates new pages only when a topic deserves to become a durable node.</li>
+<li>Maintains <code>index.md</code> and <code>log.md</code>.</li>
+<li>Flags contradictions rather than silently overwriting them.</li>
+<li>Files substantial query answers back into the wiki.</li>
+</ul>
+<h2 id="why-this-is-different-from-note-taking">Why this is different from note-taking</h2>
+<p>The user does not need to manually write and maintain every note. The wiki becomes closer to a codebase: the schema is the spec, Obsidian or a text editor is the IDE, and the LLM is the maintainer making structured edits.</p>
+<h2 id="risks">Risks</h2>
+<ul>
+<li>Over-creating pages for minor mentions.</li>
+<li>Letting weak single-source claims harden into facts.</li>
+<li>Failing to update the index/log.</li>
+<li>Creating links without preserving provenance.</li>
+</ul>
+      </div>
+    </article>
+
+    <footer>
+      <span>Generated from Jay's public wiki export</span>
+      <a href="/">jsosa.xyz</a>
+    </footer>
+  </body>
+</html>
