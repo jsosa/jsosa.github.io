@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Building a public wiki from a private one | Jeison Sosa</title>
+    <meta name="description" content="A practical essay on building a private markdown wiki, maintaining it with an agent, and exporting a clean public version to jsosa.xyz.">
+    <meta name="author" content="Jeison Sosa">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <a href="/" class="back-link">← Home</a>
+
+    <article>
+      <h1>Building a public wiki</h1>
+      <p class="meta">29 May 2026</p>
+
+      <p>I like simple things. Not simple as in underbuilt, or simple because the problem was easy, but simple in the sense that the pieces are visible and the system can be understood after time away. The best kind of simplicity is not a lack of ambition; it is a refusal to add machinery before the shape of the problem demands it.</p>
+
+      <p>That was the lens I brought to my private wiki. Most of my reading used to vanish into chats, saved links, and half-remembered notes. I read across product, founders, markets, AI, payments, defence, and operating craft, and the useful material often arrives as transcripts, essays, interviews, screenshots, and fragments. Each source may be valuable on its own, but the value compounds only when it can connect to something I have already understood.</p>
+
+      <p>The old workflow broke at exactly that point. I would save a source, ask an LLM about it, get a decent explanation, and then leave the answer inside the chat where it slowly became hard to find. A week later I would ask a similar question, pay the same tax again, and end up with another disposable answer beside the first one.</p>
+
+      <p>I wanted to implement the LLM wiki pattern inside Hermes, but I did not want to turn Hermes into a heavy knowledge-base product. I did not want to import someone else's whole set of skills, templates, workflows, or knowledge-base operating system. Those systems can be useful, but they often arrive with a lot of taste embedded inside them, and I wanted something that fit the way I read.</p>
+
+      <p>The starting point was <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">Andrej Karpathy's LLM Wiki note</a>. The pattern is simple and already familiar to a lot of people building personal wikis: keep markdown pages between you and your sources, then let the model help maintain those pages over time. I used that original idea as the reference point, then built the smaller version I actually needed with Hermes.</p>
+
+      <p>There are four parts to the setup: raw sources, a private wiki, an exporter, and the public website. Raw sources are the material I do not want to lose, the private wiki is the working space where Hermes helps maintain markdown pages, and the exporter is a small script that turns approved private pages into public HTML and JSON. The website is the static output that readers see.</p>
+
+      <figure class="simple-figure">
+        <div class="simple-flow" aria-label="Wiki flow from raw sources to private wiki to exporter to public site">
+          <span>raw sources</span>
+          <span>→</span>
+          <span>private markdown wiki</span>
+          <span>→</span>
+          <span>exporter</span>
+          <span>→</span>
+          <span>public static site</span>
+        </div>
+        <figcaption>The private system stays plain. The public site is just an export.</figcaption>
+      </figure>
+
+      <h2>The private wiki</h2>
+
+      <p>The private wiki starts with folders and markdown files. Raw sources stay in one place, durable ideas live under concepts, and people, companies, books, products, and institutions live under entities. That split is not clever, but it is easy to remember, and it gives Hermes enough structure to decide where a new claim belongs.</p>
+
+      <pre><code>wiki/
+  raw/
+    sources/
+  concepts/
+    software-moats.md
+    founder-mode.md
+  entities/
+    stripe.md
+    brian-chesky.md</code></pre>
+
+      <p>Concepts are things like software moats, founder mode, product delight, monopoly theory, doing things that do not scale, and agent-maintained notes. Entities are the actors and artefacts around those ideas: Stripe, Airbnb, Peter Thiel, Keith Rabois, Brian Chesky, a book, a podcast episode, or a company memo. The point is modest: give the wiki stable objects that can be updated across many sources.</p>
+
+      <p>That distinction matters because a transcript rarely contains only one useful thing. A founder interview might mention Airbnb, product craft, hiring, trust, marketplace liquidity, and founder mode in the same conversation. If the transcript stays as one blob, it can only answer questions about that blob; if the claims land in concept and entity pages, the next source can attach to the same ideas.</p>
+
+      <p>The ingest loop is deliberately repetitive. Add the source, preserve the raw text, read carefully, extract durable claims, update concept pages, update entity pages, rebuild links, and record what changed. The wiki is not a dump of chat history; it is a curated layer between raw sources and future questions. The second step is the one I care about most: preserve the raw text.</p>
+
+      <p>I do not want an agent to summarise a source and throw the source away. That gives the summary too much authority and makes it hard to check where a claim came from later. The wiki page is the interpretation layer built on top, while the original material stays immutable and available for audit, down to a source hash when I need to check whether the body changed.</p>
+
+      <h2>The shape of a page</h2>
+
+      <p>A folder of markdown pages is easy to start and easy to ruin. Without a schema, pages drift into essays, quote banks, unfinished notes, and whatever structure the model invents on that run. The system needed just enough shape to keep pages comparable while still leaving room for normal prose.</p>
+
+      <p>The answer was frontmatter and a few repeated sections. Frontmatter tells Hermes and the exporter what the page is, whether it can be public, when it changed, and how search should treat it. It also gives Hermes a stable format when it creates or edits a page.</p>
+
+      <pre><code>---
+title: Software Moats
+type: concept
+public: true
+created: 2026-05-28
+updated: 2026-05-29
+tags: [software, strategy, startups]
+sources: [raw/articles/software-moats.md]
+confidence: medium
+contested: false
+contradictions: []
+aliases: [moats, startup moats]
+---</code></pre>
+
+      <p>The body of the page stays readable. A concept usually starts with a short definition, then explains how the idea works, where it appears in the source material, what tensions or caveats matter, and which other pages it links to. An entity page carries the actor, the chronology, the important claims, and the links back to the ideas.</p>
+
+      <p>Wikilinks are the connective tissue. If a page mentions [[Brian Chesky]] or [[Founder Mode]], that link has meaning inside the private wiki, and it gives the agent a structure to maintain. Over time, the wiki improves by editing existing objects rather than creating a fresh pile of summaries every time I add a source.</p>
+
+      <p>This is where Hermes becomes useful. A good ingest means reading carefully, spotting durable claims, deciding where they belong, updating existing pages, creating missing ones, and checking links. I still decide what belongs, what should stay private, which concepts matter, and when a page feels wrong; the agent handles the grind between those decisions.</p>
+
+      <h2>The public layer</h2>
+
+      <p>The private wiki has an obvious use: it helps me think, gives Hermes more context, and lets future work inherit memory. Publishing creates a different kind of pressure because public pages need cleaner language, fewer personal shortcuts, and links that make sense to someone arriving cold from a browser. That pressure is useful, but it is still just an extension of ordinary note-taking discipline.</p>
+
+      <p>I like the idea of learning in public, provided the public layer is careful. The point is to publish shaped concepts, company notes, people notes, market ideas, and operating frameworks while keeping the messy workbench private. That meant the public site had to be an export rather than the primary workspace.</p>
+
+      <p>The exporter is the boundary between those worlds. It reads the private wiki, looks only at concepts and entities, checks frontmatter, skips pages marked private, strips personal sections, converts safe wikilinks into public links, and writes static HTML into the website repo. The public site is disposable output; the private markdown remains the thing to protect.</p>
+
+      <pre><code>wiki/
+  index.html
+  concepts/
+    index.html
+    software-moats.html
+  entities/
+    index.html
+    stripe.html
+  wiki.css
+  search.json</code></pre>
+
+      <p>The formats are intentionally classic. Markdown is the private editing format because it is readable in any editor and easy for Hermes to patch. HTML is the public reading format because the web already knows how to serve it. JSON is the search format because a small static index is enough for the current size of the wiki.</p>
+
+      <p>That choice keeps the system lean. There is no app server, no database, no hosted search service, and no build step for the reader to care about. GitHub Pages can serve the result because the result is just files: markdown going in, HTML and JSON coming out.</p>
+
+      <h2>Search without machinery</h2>
+
+      <p>Search was the part most likely to pull the project into unnecessary machinery. A knowledge base wants search, and the usual route is an index, a backend, a hosted service, or a framework. I wanted the smallest version that would work on a static site.</p>
+
+      <p>The answer was one JSON file. The exporter writes search.json beside the wiki HTML, with each record containing the title, type, URL, summary, tags, aliases, headings, and cleaned body text. The wiki homepage fetches that file and ranks records in the browser.</p>
+
+      <pre><code>fetch('search.json')
+  .then((response) =&gt; response.json())
+  .then((data) =&gt; {
+    index = Array.isArray(data) ? data : [];
+    ready = true;
+    render();
+  });</code></pre>
+
+      <p>The ranking is basic, but it fits the scale of the site. Exact title matches score highest, title prefixes come next, and aliases, tags, headings, summaries, and body text follow. Seventy eight pages do not need industrial search; they need fast local filtering and sensible results.</p>
+
+      <p>The search file also has to respect the same privacy boundary as the HTML. Search often leaks more than pages because a site can hide a paragraph in the rendered page while still exposing it in an index, feed, sitemap, or API. The exporter avoids that by deriving HTML and search from the same cleaned page object.</p>
+
+      <h2>The boundary</h2>
+
+      <p>The hardest part of the project is deciding what public means. Some material is obviously public, such as notes on founder mode, software moats, product craft, and company strategy. Some is obviously private, such as personal plans, job search context, raw source files, unfinished thoughts, and notes written for my own operating system.</p>
+
+      <p>The awkward material sits between those categories. A concept may be public while one section inside it is personal; an entity page may be fine while a source link should stay private; a useful insight may need rewriting before it belongs on the internet. The exporter can enforce rules, but it cannot decide taste, discretion, or context.</p>
+
+      <p>Validation gives the filter teeth. The loop is ordinary: run the exporter, read the report, check page counts, check stripped sections, check remaining Jay mentions, check broken or unpublished wikilinks, parse search.json, and serve the site locally. A public wiki needs to be read as a real page before it deserves to be linked from the homepage.</p>
+
+      <p>The first public version still looked too generated. It had too much scaffolding, some pages carried private-ish sections, listing pages had back links in the wrong place, search needed tightening, and the width did not match the main site. Those details sound small, but they decide whether the system feels cared for.</p>
+
+      <p>The styling is now deliberately quiet: the same root stylesheet as the site, a small wiki.css file, thin rules, muted labels, Cormorant headings, Space Grotesk body text, and a 760px content column. It should feel like a set of notes rather than a SaaS dashboard.</p>
+
+      <h2>What I would keep</h2>
+
+      <p>If I were starting again, I would keep the first version even smaller. Start with a private markdown wiki, create concepts and entities, add a raw folder for sources, and decide the frontmatter before ingesting too much material. Make public/private status explicit from the beginning, because it is much harder to bolt that judgement on later.</p>
+
+      <p>Then write the ingest rule. Preserve the raw source, extract durable claims, update existing pages before creating new ones, link concepts and entities with wikilinks, add dates and confidence, and record changed files. After that, write the exporter as a boundary rather than a publishing system.</p>
+
+      <p>The minimum useful public export is more workflow than platform: filter public pages, strip private sections, render HTML, build one search file, write a report, and serve the result as static files. Add richer search when the JSON file stops being good enough, add a better markdown parser when the narrow converter blocks useful writing, and add a database only when files become the bottleneck.</p>
+
+      <p>The base feels useful because it is easy to understand after time away. The private wiki can absorb raw material, Hermes can help turn it into durable pages, the exporter can publish the safe layer, and the public site can be searched and browsed without a backend. The simple version can keep carrying more weight as long as each change makes the workflow clearer rather than merely larger. You can visit the public wiki at <a href="https://jsosa.xyz/wiki">jsosa.xyz/wiki</a>.</p>
+
+    </article>
+
+    <footer>
+      <span>© 2026 Jeison Sosa</span>
+      <a href="/">jsosa.xyz</a>
+    </footer>
+  </body>
+</html>
