@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>LLM Wiki · Jay Sosa Wiki</title>
+    <meta name="description" content="An LLM Wiki is a persistent, agent-maintained markdown knowledge base where an LLM incrementally compiles sources into structured, cross-linked pages. The key distinction from ordinary retrieval is that knowledge is...">
+    <meta name="author" content="Jeison Sosa">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="canonical" href="https://jsosa.xyz/wiki/concepts/llm-wiki.html">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../wiki.css">
+  </head>
+  <body class="wiki-page wiki-concept">
+    <a class="back-link" href="../index.html">← Wiki index</a>
+    <article>
+      <p class="ref">Concept</p>
+      <h1>LLM Wiki</h1>
+      <p class="meta">Concept · Updated 2026-05-27 · Confidence: high</p>
+      <div class="wiki-tags"><span>knowledge-base</span><span>llm</span><span>agent-workflow</span><span>research</span><span>obsidian</span></div>
+      <div class="wiki-content">
+<p>An LLM Wiki is a persistent, agent-maintained markdown knowledge base where an LLM incrementally compiles sources into structured, cross-linked pages. The key distinction from ordinary retrieval is that knowledge is integrated once and then maintained, rather than rediscovered from raw chunks on every query.</p>
+<p>The architecture has three layers:</p>
+<ul>
+<li><strong>Raw sources</strong>: immutable source documents under <code>raw/</code>.</li>
+<li><strong>Compiled wiki</strong>: summaries, entity pages, concept pages, comparisons, and filed queries maintained by the agent.</li>
+<li><strong>Schema</strong>: rules such as this wiki's <code>SCHEMA.md</code>, which define page formats, naming, links, indexing, logging, and update policy.</li>
+</ul>
+<p>The wiki should compound. Each source can update many pages, strengthen or challenge existing synthesis, and create links that future queries can reuse.</p>
+<h2 id="why-it-matters">Why it matters</h2>
+<p>For Jay, the pattern turns recurring research into a durable asset: company research, fintech/payments analysis, role prep, product strategy memos, and essay ideas can accumulate in one navigable system instead of staying scattered across chats and source files.</p>
+<h2 id="operating-principles">Operating principles</h2>
+<ul>
+<li>Raw sources stay immutable.</li>
+<li>The agent owns bookkeeping and maintenance.</li>
+<li>The human curates sources and directs judgement.</li>
+<li>Queries should read from compiled pages first.</li>
+<li>Valuable answers should be filed back into the wiki.</li>
+</ul>
+      </div>
+    </article>
+
+    <section class="wiki-related">
+      <h2>Related pages</h2>
+      <ul><li><a href="../concepts/jay-personal-knowledge-os.html">Jay Personal Knowledge OS</a></li></ul>
+    </section>
+    <footer>
+      <span>Generated from Jay's public wiki export</span>
+      <a href="/">jsosa.xyz</a>
+    </footer>
+  </body>
+</html>
