@@ -4,76 +4,101 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profitable</title>
+  <link rel="stylesheet" href="style.css">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background-color: #ffffff;
+    :root {
+      --success: #4f7f59;
+      --warning: #9a7a2f;
+      --danger: #9b3d36;
+      --paper: #fffdfa;
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #ffffff;
-      color: #1a1a1a;
-      padding: 16px 12px;
-      line-height: 1.6;
+      max-width: 1000px;
+      padding: 0 24px;
+      background: var(--bg);
+      color: var(--ink);
     }
 
     .container {
-      max-width: 1000px;
       margin: 0 auto;
     }
 
     header {
-      text-align: center;
-      margin-bottom: 24px;
+      padding: 64px 0 0;
+      margin-bottom: 56px;
+      border-top: 2px solid var(--ink);
+      text-align: left;
     }
 
     h1 {
-      font-size: 28px;
-      font-weight: 600;
-      margin-bottom: 4px;
-      text-transform: uppercase;
-      letter-spacing: -1px;
+      font-family: 'Cormorant', Georgia, serif;
+      font-size: clamp(3.4rem, 9vw, 5.8rem);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin: 0 0 14px;
+      text-transform: none;
     }
 
     .subtitle {
-      font-size: 14px;
-      color: #666;
-      font-weight: 300;
-      letter-spacing: 2px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
+      color: var(--gray);
+      margin: 0 0 48px;
     }
 
-    /* Form Section */
-    .form-card {
-      background: white;
-      border-radius: 4px;
-      padding: 16px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-      margin-bottom: 12px;
-      border: 1px solid #e2e8f0;
+    .header-rule {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 0;
     }
 
-    .form-title {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 12px;
-      color: #1a1a1a;
+    .form-card,
+    .status-card,
+    .scenario-section,
+    .details-section,
+    .metric-card {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .form-card,
+    .status-card,
+    .details-section {
+      padding: 22px;
+      margin-bottom: 18px;
+    }
+
+    .form-title,
+    .metrics-title,
+    .scenario-title,
+    label,
+    .formula-name,
+    .metric-name {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      color: var(--gray);
+      line-height: 1.2;
+    }
+
+    .form-title,
+    .metrics-title,
+    .scenario-title {
+      margin: 0 0 18px;
     }
 
     .form-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 12px;
-      margin-bottom: 12px;
+      gap: 18px;
+      margin-bottom: 18px;
     }
 
     .form-group {
@@ -82,282 +107,208 @@
     }
 
     label {
-      font-size: 11px;
-      font-weight: 600;
-      color: #1a1a1a;
-      margin-bottom: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      margin-bottom: 7px;
     }
 
     input {
-      padding: 8px 10px;
-      font-size: 14px;
-      border: 1px solid #e2e8f0;
-      border-radius: 4px;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      width: 100%;
+      padding: 10px 11px;
+      font: inherit;
+      font-size: 15px;
+      color: var(--ink);
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      border-radius: 0;
     }
 
     input:focus {
       outline: none;
-      border-color: #000;
-      box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.08);
+      border-color: var(--ink);
+    }
+
+    .input-hint,
+    .metric-descriptor,
+    .status-summary,
+    .scenario-copy,
+    .error {
+      color: var(--gray);
+      font-size: 13px;
+      line-height: 1.5;
     }
 
     .input-hint {
-      font-size: 11px;
-      color: #999;
-      margin-top: 2px;
+      margin-top: 5px;
     }
 
     .button-group {
       display: flex;
-      gap: 8px;
-      justify-content: center;
-      margin-top: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
     }
 
     button {
-      padding: 10px 18px;
-      font-size: 13px;
-      font-weight: 600;
-      border: none;
-      /* border-radius: 4px; */
+      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       cursor: pointer;
-      transition: all 0.15s ease-out;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+      border-radius: 0;
+    }
+
+    .btn-primary,
+    .btn-secondary,
+    .show-formulas-btn,
+    .details-toggle {
+      padding: 10px 15px;
+      border: 1px solid var(--ink);
+      background: transparent;
+      color: var(--ink);
     }
 
     .btn-primary {
-      background: #000;
-      color: white;
+      background: var(--ink);
+      color: var(--bg);
     }
 
-    .btn-primary:hover {
-      background: #1a1a1a;
+    .btn-primary:hover,
+    .btn-secondary:hover,
+    .show-formulas-btn:hover,
+    .details-toggle:hover {
+      background: var(--ink);
+      color: var(--bg);
+      font-weight: 500;
     }
 
-    .btn-secondary {
-      background: #e2e8f0;
-      color: #1a1a1a;
-      border-bottom: 1px solid #000;
-    }
-
-    .btn-secondary:hover {
-      font-weight: 700;
-    }
-
-    .btn-squared {
-      background: #1a202c;
-      color: white;
-      border-radius: 0;
-      padding: 10px 16px;
-    }
-
-    .btn-squared:hover {
-      background: #0f1419;
-    }
-
-    /* Status Card */
     .status-card {
-      background: white;
-      border-radius: 4px;
-      padding: 16px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-      margin-bottom: 12px;
-      border-left: 5px solid #000;
       display: none;
-      border: 1px solid #e2e8f0;
-      gap: 16px;
-      align-items: flex-start;
+      border-left: 2px solid var(--ink);
     }
 
     .status-card.show {
-      display: flex;
-    }
-
-    .status-indicator {
-      width: 48px;
-      height: 48px;
-      border-radius: 6px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      background: #f5f5f5;
-    }
-
-    .status-card.strong .status-indicator {
-      background: #d4f5e9;
-    }
-
-    .status-card.viable .status-indicator {
-      background: #f5e8d0;
-    }
-
-    .status-card.at-risk .status-indicator {
-      background: #f5d0d0;
-    }
-
-    .status-card.not-viable .status-indicator {
-      background: #e8e8e8;
-    }
-
-    .status-content {
-      flex: 1;
-    }
-
-    .status-card.strong {
-      border-left-color: #48bb78;
-    }
-
-    .status-card.viable {
-      border-left-color: #d9a539;
-    }
-
-    .status-card.at-risk {
-      border-left-color: #d32f2f;
-    }
-
-    .status-card.not-viable {
-      border-left-color: #cbd5e0;
-    }
-
-    .status-title {
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 4px;
-      color: #1a1a1a;
-      text-transform: uppercase;
-      letter-spacing: -0.5px;
-    }
-
-    .status-summary {
-      font-size: 13px;
-      color: #555;
-      line-height: 1.5;
-    }
-
-    /* Metrics Grid */
-    .metrics-section {
-      margin-top: 12px;
-      display: none;
-    }
-
-    .metrics-section.show {
       display: block;
     }
 
-    .metrics-title {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 12px;
-      color: #1a1a1a;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+    .status-indicator {
+      display: none;
+    }
+
+    .status-card.strong { border-left-color: var(--success); }
+    .status-card.viable { border-left-color: var(--warning); }
+    .status-card.at-risk,
+    .status-card.not-viable { border-left-color: var(--danger); }
+
+    .status-card.strong .status-indicator { color: var(--success); }
+    .status-card.viable .status-indicator { color: var(--warning); }
+    .status-card.at-risk .status-indicator,
+    .status-card.not-viable .status-indicator { color: var(--danger); }
+
+    .status-title {
+      font-family: 'Cormorant', Georgia, serif;
+      font-size: 28px;
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      text-transform: none;
+      margin-bottom: 6px;
+    }
+
+    .metrics-tweak-wrapper {
+      display: flex;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .metrics-tweak-wrapper #scenarioSection {
+      flex: 0 0 33.33%;
+      order: 1;
+    }
+
+    .metrics-tweak-wrapper #metricsSection {
+      flex: 0 0 calc(66.66% - 18px);
+      order: 2;
+    }
+
+    .metrics-section,
+    .scenario-section,
+    .details-section {
+      display: none;
+    }
+
+    .metrics-section.show,
+    .scenario-section.show,
+    .details-section.show {
+      display: block;
+    }
+
+    .scenario-section {
+      padding: 22px;
     }
 
     .metrics-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
       gap: 12px;
-      margin-bottom: 12px;
     }
 
     .metric-card {
-      background: #ffffff;
-      border-radius: 4px;
-      padding: 12px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-      border-top: 3px solid #ddd;
-      border: 1px solid #e2e8f0;
-      border-top: 3px solid #ddd;
+      padding: 14px;
+      border-top: 2px solid var(--rule);
     }
 
-    .metric-card.healthy {
-      border-top-color: #48bb78;
-    }
+    .metric-card.healthy { border-top-color: var(--success); }
+    .metric-card.warning { border-top-color: var(--warning); }
+    .metric-card.danger { border-top-color: var(--danger); }
 
-    .metric-card.warning {
-      border-top-color: #d9a539;
-    }
-
-    .metric-card.danger {
-      border-top-color: #d32f2f;
+    .metric-card:last-child {
+      grid-column: 1 / -1;
     }
 
     .metric-name {
-      font-size: 10px;
-      color: #999;
-      font-weight: 600;
-      margin-bottom: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      margin-bottom: 8px;
     }
 
     .metric-value {
+      font-family: 'DM Mono', 'Courier New', monospace;
       font-size: 18px;
-      font-weight: 700;
-      color: #1a1a1a;
-      font-family: 'Courier New', monospace;
-      margin-bottom: 2px;
-    }
-
-    .metric-descriptor {
-      font-size: 10px;
-      color: #999;
-    }
-
-    /* Scenario Mode */
-    .scenario-section {
-      background: white;
-      padding: 16px;
-      display: none;
-    }
-
-    .scenario-section.show {
-      display: block;
-    }
-
-    .scenario-title {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 12px;
-      color: #1a1a1a;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      font-weight: 300;
+      color: var(--ink);
+      margin-bottom: 4px;
+      letter-spacing: -0.03em;
     }
 
     .slider-group {
-      margin-bottom: 16px;
+      margin-bottom: 22px;
     }
 
     .slider-label {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 6px;
-      font-size: 13px;
-      font-weight: 600;
+      gap: 16px;
+      margin-bottom: 10px;
+      font-size: 12px;
     }
 
-    .slider-label-text {
-      color: #1a1a1a;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+    .slider-label-text,
+    .slider-value {
+      font-family: 'DM Mono', monospace;
+      color: var(--gray);
+      letter-spacing: 0.04em;
     }
 
     .slider-value {
-      color: #000;
-      font-weight: 700;
+      color: var(--ink);
     }
 
     input[type="range"] {
       width: 100%;
-      height: 6px;
-      border-radius: 3px;
-      background: #e5e7eb;
-      outline: none;
+      height: 2px;
+      padding: 0;
+      border: 0;
+      background: var(--rule);
       -webkit-appearance: none;
       appearance: none;
     }
@@ -365,83 +316,35 @@
     input[type="range"]::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      width: 20px;
-      height: 20px;
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
-      background: #000;
+      background: var(--ink);
       cursor: pointer;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
 
     input[type="range"]::-moz-range-thumb {
-      width: 20px;
-      height: 20px;
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
-      background: #000;
+      background: var(--ink);
       cursor: pointer;
       border: none;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
 
-    /* Delta Highlighting */
     .delta {
       display: inline-block;
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-size: 12px;
-      font-weight: 600;
       margin-left: 8px;
-    }
-
-    .delta.positive {
-      background: #f0f0f0;
-      color: #000;
-    }
-
-    .delta.negative {
-      background: #f5f5f5;
-      color: #666;
-    }
-
-    /* Hidden Details */
-    .details-section {
-      background: white;
-      border-radius: 4px;
-      padding: 16px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-      margin-top: 12px;
-      display: none;
-      border: 1px solid #e2e8f0;
-    }
-
-    .details-section.show {
-      display: block;
-    }
-
-    .details-toggle {
-      background: none;
-      border: 1px solid #000;
-      color: #000;
-      cursor: pointer;
-      font-size: 13px;
-      font-weight: 600;
-      padding: 8px 16px;
-      margin-bottom: 12px;
-      border-radius: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .details-toggle:hover {
-      background: #f9fafb;
-      font-weight: 700;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--gray);
     }
 
     .formula-item {
-      margin-bottom: 12px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid #e2e8f0;
-      font-size: 12px;
+      margin-bottom: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--rule);
+      font-size: 13px;
     }
 
     .formula-item:last-child {
@@ -451,124 +354,56 @@
     }
 
     .formula-name {
-      font-weight: 600;
-      color: #1a1a1a;
-      margin-bottom: 4px;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      margin-bottom: 7px;
     }
 
     .formula-text {
-      color: #555;
-      font-family: 'Courier New', monospace;
-      background: #f9f9f9;
-      padding: 6px 10px;
-      border-radius: 4px;
-      margin-bottom: 4px;
+      font-family: 'DM Mono', 'Courier New', monospace;
+      color: var(--ink);
+      background: var(--bg);
+      padding: 8px 10px;
       overflow-x: auto;
-      font-size: 11px;
-      border: 1px solid #e2e8f0;
+      font-size: 12px;
+      border: 1px solid var(--rule);
     }
 
-    /* Responsive */
+    .error {
+      margin-top: 4px;
+    }
+
+    footer {
+      max-width: none;
+    }
+
     @media (max-width: 768px) {
-      h1 {
-        font-size: 24px;
+      body {
+        padding: 0 20px;
       }
 
-      .form-grid {
-        grid-template-columns: 1fr;
+      header {
+        padding: 48px 0 0;
+        margin-bottom: 40px;
       }
 
+      .form-grid,
       .metrics-grid {
         grid-template-columns: 1fr;
       }
 
-      .status-card {
-        flex-direction: column;
-        padding: 12px;
-      }
-
-      .form-card {
-        padding: 12px;
-      }
-
-      .button-group {
-        flex-direction: column;
-      }
-
-      button {
-        width: 100%;
-      }
-
-      body {
-        padding: 12px 8px;
-      }
-    }
-
-    .error {
-      color: #999;
-      font-size: 13px;
-      margin-top: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .show-formulas-btn {
-      background: none;
-      border: 1px solid #000;
-      color: #000;
-      padding: 8px 16px;
-      margin-top: 12px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 13px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .show-formulas-btn:hover {
-      background: #f9fafb;
-      font-weight: 700;
-    }
-
-    /* Metrics and Tweak Assumptions Side-by-Side */
-    .metrics-tweak-wrapper {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
-    .metrics-tweak-wrapper #scenarioSection {
-      flex: 0 0 33.33%;
-      margin-top: 0;
-      order: 1;
-    }
-
-    .metrics-tweak-wrapper #metricsSection {
-      flex: 0 0 66.66%;
-      margin-bottom: 0;
-      order: 2;
-    }
-
-    /* Responsive - Stack vertically on mobile */
-    @media (max-width: 768px) {
+      .button-group,
+      .status-card,
       .metrics-tweak-wrapper {
         flex-direction: column;
       }
 
-      .metrics-tweak-wrapper #scenarioSection {
-        flex: 0 0 auto;
-        margin-top: 0;
-        order: auto;
-      }
-
+      .metrics-tweak-wrapper #scenarioSection,
       .metrics-tweak-wrapper #metricsSection {
         flex: 0 0 auto;
-        margin-bottom: 12px;
-        order: auto;
+        order: initial;
+      }
+
+      button {
+        width: 100%;
       }
     }
   </style>
@@ -578,6 +413,7 @@
     <header>
       <h1>Profitable</h1>
       <p class="subtitle">Quickly assess whether a new product is viable</p>
+      <hr class="header-rule">
     </header>
 
     <!-- Input Form -->
@@ -655,7 +491,7 @@
       <!-- Scenario Mode -->
       <div id="scenarioSection" class="scenario-section">
         <div class="scenario-title">Tweak Assumptions</div>
-        <p style="margin-bottom: 24px; color: #555; font-size: 14px;">Drag sliders to see how key changes affect your viability verdict</p>
+        <p class="scenario-copy">Drag sliders to see how key changes affect your viability verdict</p>
 
         <div class="slider-group">
           <div class="slider-label">
@@ -691,6 +527,11 @@
       </div>
     </div>
   </div>
+
+  <footer>
+    <span>© 2026 Jeison Sosa</span>
+    <a href="/">jsosa.xyz</a>
+  </footer>
 
   <script>
       // Default values

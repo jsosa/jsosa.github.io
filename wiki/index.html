@@ -20,7 +20,17 @@
     <section>
       <h2>About</h2>
       <p>A public map of concepts, companies, people, markets, and operating ideas I am learning from. It is generated from my private markdown knowledge base, with personal notes and raw sources removed.</p>
-      <p class="wiki-counts"><a href="concepts/index.html">44 concepts</a> · <a href="entities/index.html">35 entities</a></p>
+      <p class="wiki-counts"><a href="concepts/index.html">43 concepts</a> · <a href="entities/index.html">35 entities</a></p>
+    </section>
+
+    <section class="wiki-search-section">
+      <h2>Search</h2>
+      <div class="wiki-search" role="search">
+        <label class="wiki-search-label" for="wikiSearch">Search concepts and entities</label>
+        <input id="wikiSearch" class="wiki-search-input" type="search" autocomplete="off" placeholder="Try founder mode, Stripe, moats...">
+        <p id="wikiSearchStatus" class="wiki-search-status">Type at least two characters to search the public wiki.</p>
+        <div id="wikiSearchResults" class="wiki-search-results" aria-live="polite"></div>
+      </div>
     </section>
 
     <section>
@@ -124,6 +134,111 @@
       <p><a class="view-all" href="concepts/index.html">Browse concepts</a></p>
       <p><a class="view-all" href="entities/index.html">Browse entities</a></p>
     </section>
+
+
+    <script>
+      (() => {
+        const input = document.getElementById('wikiSearch');
+        const results = document.getElementById('wikiSearchResults');
+        const status = document.getElementById('wikiSearchStatus');
+        if (!input || !results || !status) return;
+
+        let index = [];
+        let ready = false;
+
+        const escapeHtml = (value) => value.replace(/[&<>"']/g, (char) => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;'
+        }[char]));
+
+        const normalise = (value) => (value || '').toString().toLowerCase();
+        const tokens = (value) => normalise(value).split(/\s+/).filter(Boolean);
+
+        const scorePage = (page, queryTokens, phrase) => {
+          const title = normalise(page.title);
+          const type = normalise(page.type);
+          const tags = normalise((page.tags || []).join(' '));
+          const aliases = normalise((page.aliases || []).join(' '));
+          const headings = normalise((page.headings || []).join(' '));
+          const summary = normalise(page.summary);
+          const text = normalise(page.text);
+          let score = 0;
+
+          if (title === phrase) score += 120;
+          if (title.startsWith(phrase)) score += 80;
+          if (title.includes(phrase)) score += 55;
+          if (aliases.includes(phrase)) score += 45;
+          if (tags.includes(phrase)) score += 35;
+          if (headings.includes(phrase)) score += 25;
+          if (summary.includes(phrase)) score += 20;
+          if (text.includes(phrase)) score += 8;
+          if (type === phrase) score += 5;
+
+          for (const token of queryTokens) {
+            if (title.includes(token)) score += 20;
+            if (aliases.includes(token)) score += 16;
+            if (tags.includes(token)) score += 12;
+            if (headings.includes(token)) score += 8;
+            if (summary.includes(token)) score += 6;
+            if (text.includes(token)) score += 2;
+          }
+          return score;
+        };
+
+        const render = () => {
+          const query = input.value.trim();
+          results.innerHTML = '';
+          if (query.length < 2) {
+            status.textContent = ready ? 'Type at least two characters to search the public wiki.' : 'Loading search index…';
+            return;
+          }
+          if (!ready) {
+            status.textContent = 'Loading search index…';
+            return;
+          }
+
+          const queryTokens = tokens(query);
+          const phrase = normalise(query);
+          const matches = index
+            .map((page) => ({ page, score: scorePage(page, queryTokens, phrase) }))
+            .filter((item) => item.score > 0)
+            .sort((a, b) => b.score - a.score || a.page.title.localeCompare(b.page.title))
+            .slice(0, 12);
+
+          status.textContent = matches.length
+            ? `${matches.length} result${matches.length === 1 ? '' : 's'} for “${query}”`
+            : `No results for “${query}”`;
+
+          results.innerHTML = matches.map(({ page }) => `
+            <a class="wiki-search-result" href="${escapeHtml(page.url)}">
+              <span class="wiki-search-result-meta">${escapeHtml(page.type)}</span>
+              <span class="wiki-search-result-title">${escapeHtml(page.title)}</span>
+              <span class="wiki-search-result-summary">${escapeHtml(page.summary || '')}</span>
+            </a>
+          `).join('');
+        };
+
+        fetch('search.json')
+          .then((response) => {
+            if (!response.ok) throw new Error(`Search index failed: ${response.status}`);
+            return response.json();
+          })
+          .then((data) => {
+            index = Array.isArray(data) ? data : [];
+            ready = true;
+            render();
+          })
+          .catch(() => {
+            status.textContent = 'Search is unavailable right now.';
+          });
+
+        input.addEventListener('input', render);
+      })();
+    </script>
+
 
     <footer>
       <span>© 2026 Jeison Sosa</span>
