@@ -2,8 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Hermes on my desk | Jeison Sosa</title>
-    <meta name="description" content="A practical essay on moving Hermes from a VPS to a Mac mini, backing up the useful state to GitHub, and treating an agent as local infrastructure.">
+    <title>Hermes as local infrastructure | Jeison Sosa</title>
+    <meta name="description" content="A practical essay on moving Hermes from a VPS to a Mac mini, backing up useful state to GitHub, and treating an agent as local infrastructure.">
     <meta name="author" content="Jeison Sosa">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="style.css">
@@ -12,16 +12,16 @@
     <a href="/" class="back-link">← Home</a>
 
     <article>
-      <h1>Hermes on my desk</h1>
+      <h1>Hermes as local infrastructure</h1>
       <p class="meta">26 May 2026</p>
 
-      <p>Hermes started in the place most small pieces of internet infrastructure start: a cheap server somewhere else. A Hostinger VPS was good enough for the first version because it was always on, easy to reach from Telegram, and separate from the laptop I use every day. That distance was useful at the beginning, because it let me treat the agent as infrastructure rather than another local app I needed to nurse.</p>
+      <p>Hermes started in the place most small pieces of internet infrastructure start: a cheap server somewhere else. A Hostinger VPS was good enough for the first version because it was always on, easy to reach from Telegram, and separate from the everyday laptop. That distance was useful at the beginning, because it made the agent feel like infrastructure rather than another local app needing attention.</p>
 
-      <p>The problem was that Hermes was not meant to stay as a chatbot on a remote machine. The useful version of an agent is close to the work: it can read the right folders, edit the right repo, remember the right preferences, run scheduled jobs, and connect small tools that would otherwise sit apart. Once Hermes moved from answering questions to acting on my behalf, the machine it lived on started to matter more.</p>
+      <p>The problem was that Hermes was not meant to stay as a chatbot on a remote machine. The useful version of an agent is close to the work: it can read the right folders, edit the right repo, remember the right preferences, run scheduled jobs, and connect small tools that would otherwise sit apart. Once Hermes moved from answering questions to taking action, the machine it lived on started to matter more.</p>
 
-      <p>I already accept that model calls may pass through OpenAI, Anthropic, or whichever provider I choose for a task. That is one trust boundary. The VPS added another one: the host also held the runtime, logs, files, skills, cron jobs, and the operational state of the agent. That began to feel like the wrong default for a system that was slowly becoming personal infrastructure.</p>
+      <p>Model calls may already pass through OpenAI, Anthropic, or whichever provider fits a task. That is one trust boundary. The VPS added another one: the host also held the runtime, logs, files, skills, cron jobs, and the operational state of the agent. That began to look like the wrong default for a system slowly becoming personal infrastructure.</p>
 
-      <p>The answer was not a grand self-hosting project. I moved Hermes to a Mac mini on my desk, where the machine is boring, visible, and close to the files it needs to touch. The change was small in hardware terms, but it changed the feeling of the system: the agent stopped being a service I rented and became a local operator I could inspect, restart, patch, and back up.</p>
+      <p>The answer was not a grand self-hosting project. Hermes moved to a Mac mini: a boring, visible machine close to the files it needs to touch. The change was small in hardware terms, but it changed the shape of the system. The agent stopped being a rented service and became a local operator that could be inspected, restarted, patched, and backed up.</p>
 
       <figure class="simple-figure">
         <div class="simple-flow" aria-label="Hermes runs locally, syncs durable state to GitHub, and is reached through Telegram">
@@ -38,9 +38,9 @@
 
       <h2>What actually moved</h2>
 
-      <p>The migration was ordinary in the way most useful infrastructure work is ordinary. I copied configuration, restored skills, moved memories, checked scheduled jobs, wired Telegram again, and tested whether the same agent could wake up in a new place without losing its shape. None of those steps is interesting alone; together they decide whether a tool survives contact with real use.</p>
+      <p>The migration was ordinary in the way most useful infrastructure work is ordinary. Configuration was copied, skills were restored, memories were moved, scheduled jobs were checked, Telegram was wired again, and the same agent had to wake up in a new place without losing its shape. None of those steps is interesting alone; together they decide whether a tool survives contact with real use.</p>
 
-      <p>The important thing was preserving the parts that make Hermes mine rather than reinstalling the software and calling it done. The binary can be reinstalled, the models can change, and the gateway can be restarted. The useful state is the small layer of preferences, workflows, scripts, project conventions, cron definitions, and local context that turns a generic agent into something that understands the room.</p>
+      <p>The important thing was preserving the parts that make Hermes more than a fresh installation. The binary can be reinstalled, the models can change, and the gateway can be restarted. The useful state is the small layer of preferences, workflows, scripts, project conventions, cron definitions, and local context that turns a generic agent into something that understands the room.</p>
 
       <pre><code>~/.hermes/
   config.yaml          # runtime shape, providers, tools
@@ -51,7 +51,7 @@
   scripts/             # small operators: backup, sync, checks
   .env                 # secrets stay local and out of commits</code></pre>
 
-      <p>That folder structure is not special, but seeing it plainly helped me reason about the system. Hermes is not one thing; it is a runtime plus a memory layer plus a set of skills plus the projects it can act on. The migration worked when those pieces could be named, copied, checked, and restored without depending on a half-remembered setup session.</p>
+      <p>That folder structure is not special, but making it plain helps the system become legible. Hermes is not one thing; it is a runtime plus a memory layer plus a set of skills plus the projects it can act on. The migration worked when those pieces could be named, copied, checked, and restored without depending on a half-remembered setup session.</p>
 
       <p>This is also where running locally helps. A local agent can be given a clear boundary: these folders are in reach, those secrets stay out of Git, this repo can be edited, that profile should not be touched, this cron job may send Telegram messages, and this one should stay quiet unless it fails. The point is not that local is magically safe; it is that the boundary is legible.</p>
 
@@ -59,7 +59,7 @@
 
       <p>Putting Hermes on a Mac mini made the system feel more owned, but it also made backups more important. A server provider gives you a certain kind of persistence by default: the machine is somewhere else, usually online, and usually backed by someone else's disks. A small box on a desk gives you control, but it also gives you a single physical thing that can fail.</p>
 
-      <p>GitHub sync became the safety rail. The agent backs up the durable pieces of its state into a private repository, using commits as checkpoints rather than treating a hidden local directory as the only copy. That means a bad update, broken config change, or dead disk should be recoverable from a history I can inspect.</p>
+      <p>GitHub sync became the safety rail. The agent backs up the durable pieces of its state into a private repository, using commits as checkpoints rather than treating a hidden local directory as the only copy. That means a bad update, broken config change, or dead disk should be recoverable from an inspectable history.</p>
 
       <pre><code>git add config.yaml skills/ cron/ memories/ scripts/
 
@@ -74,7 +74,7 @@ fi</code></pre>
 
       <h2>The agent as a workbench</h2>
 
-      <p>Once the runtime and backup loop were stable, the useful part was not the novelty of having an agent on a desk. It was the way Hermes could pick up small tools and use them against real work. We edited this site, debugged cron delivery, opened pull requests, searched for accommodation, drafted essays, and started turning company-performance questions into reusable trackers.</p>
+      <p>Once the runtime and backup loop were stable, the useful part was not the novelty of having an agent on a desk. It was the way Hermes could pick up small tools and use them against real work: editing this site, debugging cron delivery, opening pull requests, searching for accommodation, drafting essays, and turning company-performance questions into reusable trackers.</p>
 
       <p>The Press Library made that pattern clearer. Instead of asking one model to know every website, Hermes can use small browser tools for specific corners of the internet: Substack, Airbnb, Booking, Food52, and whatever comes next. The agent becomes less like a single clever answer box and more like a bench with labelled tools on it.</p>
 
@@ -93,15 +93,15 @@ fi</code></pre>
 
       <p>The system still needs restraint. An agent close to the work should not be allowed to become a vague omnipotent helper with access to everything. It should have specific skills, visible files, testable scripts, and habits that can be corrected. The best version is not magical; it is a patient operator with a clear desk.</p>
 
-      <h2>What I would keep</h2>
+      <h2>What survives</h2>
 
-      <p>If I were starting again, I would still begin remotely because a VPS is the fastest way to prove that the interface and habits are useful. Telegram delivery, scheduled tasks, and a few simple tools are enough to test whether the agent deserves a permanent place. Moving too early would have turned the setup into a hardware project before the workflow had earned it.</p>
+      <p>A remote beginning still makes sense because a VPS is the fastest way to prove that the interface and habits are useful. Telegram delivery, scheduled tasks, and a few simple tools are enough to test whether the agent deserves a permanent place. Moving too early turns the setup into a hardware project before the workflow has earned it.</p>
 
-      <p>But I would move the durable version local sooner. Once an agent starts touching personal projects, remembering preferences, editing files, and accumulating routines, its home becomes part of the product. The decision is less about performance and more about accountability: where the files live, how they are backed up, who can inspect the changes, and how quickly the system can be rebuilt.</p>
+      <p>But the durable version should move local sooner. Once an agent starts touching personal projects, remembering preferences, editing files, and accumulating routines, its home becomes part of the product. The decision is less about performance and more about accountability: where the files live, how they are backed up, who can inspect the changes, and how quickly the system can be rebuilt.</p>
 
-      <p>The simple version is enough for now. Hermes runs on a Mac mini, speaks through Telegram, keeps its useful state in plain folders, backs up the recoverable parts to GitHub, and uses small tools for specific jobs. That shape is easy to understand after time away, which is the test I care about most.</p>
+      <p>The simple version is enough for now. Hermes runs on a Mac mini, speaks through Telegram, keeps its useful state in plain folders, backs up the recoverable parts to GitHub, and uses small tools for specific jobs. That shape is easy to understand after time away, which is the test that matters most.</p>
 
-      <p>The question is no longer whether an agent can help. It is where the agent should live, what it should remember, which tools it should be trusted to use, and which parts of your life are worth putting within reach. For me, the answer is a small machine on the desk, a private backup trail, and an agent close enough to the work to be useful without becoming mysterious.</p>
+      <p>The question is no longer whether an agent can help. It is where the agent should live, what it should remember, which tools it should be trusted to use, and which parts of a life are worth putting within reach. The practical answer is a small local machine, a private backup trail, and an agent close enough to the work to be useful without becoming mysterious.</p>
     </article>
 
     <footer>

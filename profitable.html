@@ -14,7 +14,6 @@
     }
 
     body {
-      max-width: 1000px;
       padding: 0 24px;
       background: var(--bg);
       color: var(--ink);
@@ -32,7 +31,7 @@
     }
 
     h1 {
-      font-family: 'Cormorant', Georgia, serif;
+      font-family: 'Familjen Grotesk', 'IBM Plex Sans', sans-serif;
       font-size: clamp(3.4rem, 9vw, 5.8rem);
       font-weight: 300;
       letter-spacing: -0.02em;
@@ -148,7 +147,7 @@
     }
 
     button {
-      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Familjen Grotesk', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       font-size: 12px;
       font-weight: 500;
       letter-spacing: 0.08em;
@@ -206,7 +205,7 @@
     .status-card.not-viable .status-indicator { color: var(--danger); }
 
     .status-title {
-      font-family: 'Cormorant', Georgia, serif;
+      font-family: 'Familjen Grotesk', 'IBM Plex Sans', sans-serif;
       font-size: 28px;
       font-weight: 400;
       line-height: 1.15;
@@ -272,7 +271,7 @@
     }
 
     .metric-value {
-      font-family: 'DM Mono', 'Courier New', monospace;
+      font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
       font-size: 18px;
       font-weight: 300;
       color: var(--ink);
@@ -294,7 +293,7 @@
 
     .slider-label-text,
     .slider-value {
-      font-family: 'DM Mono', monospace;
+      font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
       color: var(--gray);
       letter-spacing: 0.04em;
     }
@@ -335,7 +334,7 @@
     .delta {
       display: inline-block;
       margin-left: 8px;
-      font-family: 'DM Mono', monospace;
+      font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
       font-size: 11px;
       color: var(--gray);
     }
@@ -358,7 +357,7 @@
     }
 
     .formula-text {
-      font-family: 'DM Mono', 'Courier New', monospace;
+      font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
       color: var(--ink);
       background: var(--bg);
       padding: 8px 10px;
@@ -371,6 +370,155 @@
       margin-top: 4px;
     }
 
+    :root {
+      --success: #050505;
+      --warning: #646464;
+      --danger: #050505;
+      --paper: #fff;
+    }
+
+    body {
+      width: min(100% - 40px, var(--text-width));
+      max-width: none;
+      padding: 0 0 56px;
+      background: var(--paper);
+    }
+
+    header {
+      min-height: 46vh;
+      padding: 54px 0 80px;
+      margin-bottom: 0;
+      border-top: 0;
+    }
+
+    h1,
+    .status-title {
+      font-family: 'Familjen Grotesk', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 5.4vw, 4.4rem);
+      line-height: 0.98;
+      margin: 0;
+    }
+
+    .subtitle {
+      margin: 22px 0 0;
+      color: var(--gray);
+      font-size: clamp(1rem, 2vw, 1.35rem);
+      font-weight: 600;
+      letter-spacing: 0;
+      line-height: 1.2;
+      text-transform: none;
+    }
+
+    .form-card,
+    .status-card,
+    .scenario-section,
+    .details-section,
+    .metric-card {
+      border: 0;
+      border-radius: var(--radius);
+      background: var(--wash);
+    }
+
+    .form-card,
+    .status-card,
+    .details-section,
+    .scenario-section {
+      padding: 18px;
+    }
+
+    .form-title,
+    .metrics-title,
+    .scenario-title,
+    label,
+    .formula-name,
+    .metric-name {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+    }
+
+    input,
+    .formula-text {
+      border: 0;
+      border-radius: var(--radius);
+      background: var(--paper);
+    }
+
+    input:focus {
+      box-shadow: 0 0 0 3px var(--wash-strong);
+    }
+
+    button,
+    .btn-primary,
+    .btn-secondary,
+    .show-formulas-btn,
+    .details-toggle {
+      border: 0;
+      border-radius: var(--radius);
+      background: var(--ink);
+      color: var(--reverse);
+      font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .btn-secondary,
+    .show-formulas-btn,
+    .details-toggle {
+      background: var(--wash);
+      color: var(--ink);
+    }
+
+    .btn-primary:hover,
+    .btn-secondary:hover,
+    .show-formulas-btn:hover,
+    .details-toggle:hover {
+      background: var(--ink);
+      color: var(--reverse);
+    }
+
+    .status-card {
+      border-left: 0;
+      background: var(--ink);
+      color: var(--reverse);
+    }
+
+    .status-title {
+      color: var(--reverse);
+    }
+
+    .status-summary {
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .metric-card {
+      border-top: 0;
+    }
+
+    .metric-value,
+    .slider-label-text,
+    .slider-value,
+    .delta,
+    .formula-text {
+      font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      letter-spacing: 0;
+    }
+
+    input[type="range"] {
+      background: var(--wash-strong);
+    }
+
+    .formula-item {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
     footer {
       max-width: none;
     }
@@ -381,8 +529,8 @@
       }
 
       header {
-        padding: 48px 0 0;
-        margin-bottom: 40px;
+        padding: 54px 0 44px;
+        margin-bottom: 0;
       }
 
       .form-grid,
