@@ -72,6 +72,10 @@ typeScale:
 spacing:
   pageXDesktop: "20px gutter inside min(100% - 40px, max width)"
   pageXMobile: "16px gutter inside min(100% - 32px, max width)"
+  headerMinHeightDesktop: "26vh"
+  headerMinHeightMobile: "26vh"
+  headerPaddingDesktop: "54px 0 44px"
+  headerPaddingMobile: "30px 0 34px"
   sectionGap: "86px desktop, 68px under 900px"
   cardGap: "10px between cards"
   cardPadding: "16px to 18px"
@@ -230,6 +234,8 @@ Under `900px`, sections collapse into a single column. Under `640px`, use a `32p
 Spacing should feel deliberate and calm.
 
 - Page gutters: `40px` total desktop, `32px` total mobile.
+- Header rhythm: `26vh` min-height on desktop and mobile. Do not reintroduce tall hero-style headers.
+- Header padding: `54px 0 44px` on desktop and `30px 0 34px` on mobile.
 - Section rhythm: generous vertical separation between content groups.
 - Card grid gap: `10px`.
 - Card padding: `16px` or `18px`.
