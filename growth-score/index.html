@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Growth-score dashboard</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700;800&display=swap');
+
+    :root {
+      --ink: #050505;
+      --paper: #fff;
+      --muted: #646464;
+      --wash: #f3f3f3;
+      --wash-strong: #e9e9e9;
+      --reverse: #fff;
+      --radius: 8px;
+      --ease: 160ms ease;
+      --text-width: 860px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 16px;
+      text-rendering: optimizeLegibility;
+    }
+
+    body {
+      width: min(100% - 40px, var(--text-width));
+      margin: 0 auto;
+      padding: 0 0 56px;
+      font-size: 16px;
+      line-height: 1.58;
+    }
+
+    ::selection { background: var(--ink); color: var(--reverse); }
+
+    header {
+      min-height: 26vh;
+      padding: 54px 0 44px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 14ch;
+      font-family: 'Familjen Grotesk', 'IBM Plex Sans', sans-serif;
+      font-size: clamp(2.4rem, 5.4vw, 4.4rem);
+      font-weight: 600;
+      letter-spacing: 0;
+      line-height: 0.98;
+    }
+
+    .subtitle {
+      width: min(100%, 620px);
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: clamp(1.1rem, 2vw, 1.55rem);
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    section {
+      display: grid;
+      grid-template-columns: minmax(120px, 204px) minmax(0, var(--text-width));
+      gap: 18px 56px;
+      justify-content: start;
+      margin: 0 0 86px;
+    }
+
+    section > h2 { grid-column: 1; }
+    section > :not(h2) { grid-column: 2; }
+
+    h2 {
+      margin: 0;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      line-height: 1.1;
+      text-transform: uppercase;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .industry-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .industry-button {
+      min-height: 38px;
+      padding: 0 14px;
+      border: 0;
+      border-radius: var(--radius);
+      background: var(--wash);
+      color: var(--ink);
+      font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform var(--ease), background var(--ease), color var(--ease);
+    }
+
+    .industry-button:hover {
+      transform: translateY(-1px);
+      background: var(--wash-strong);
+    }
+
+    .industry-button.active {
+      background: var(--ink);
+      color: var(--reverse);
+    }
+
+    .summary-grid,
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .summary-card,
+    .company-card {
+      padding: 18px;
+      border-radius: var(--radius);
+      background: var(--wash);
+      color: var(--ink);
+    }
+
+    .summary-card.primary,
+    .company-card.leader {
+      background: var(--ink);
+      color: var(--reverse);
+    }
+
+    .label {
+      display: block;
+      margin-bottom: 10px;
+      color: currentColor;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      line-height: 1;
+      opacity: 0.68;
+      text-transform: uppercase;
+    }
+
+    .big-number {
+      display: block;
+      font-family: 'Familjen Grotesk', 'IBM Plex Sans', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      line-height: 0.95;
+    }
+
+    .cards { margin-top: 18px; }
+
+    .company-card {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      transition: transform var(--ease), background var(--ease), color var(--ease);
+    }
+
+    .company-card:hover { transform: translateY(-2px); }
+
+    .company-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .company-name {
+      display: block;
+      font-family: 'Familjen Grotesk', 'IBM Plex Sans', sans-serif;
+      font-size: clamp(1.4rem, 2.4vw, 2rem);
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .ticker {
+      color: currentColor;
+      font-size: 12px;
+      font-weight: 800;
+      opacity: 0.68;
+    }
+
+    .category {
+      margin-top: 6px;
+      color: currentColor;
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.35;
+      opacity: 0.72;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .metric {
+      min-height: 64px;
+      padding: 12px;
+      border-radius: var(--radius);
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    .company-card.leader .metric {
+      background: rgba(255, 255, 255, 0.12);
+      color: var(--reverse);
+    }
+
+    .metric-name {
+      display: block;
+      margin-bottom: 5px;
+      color: currentColor;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      opacity: 0.62;
+      text-transform: uppercase;
+    }
+
+    .metric-value {
+      display: block;
+      font-family: 'Familjen Grotesk', 'IBM Plex Sans', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: var(--radius);
+      background: var(--wash);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 980px;
+      font-size: 13px;
+      line-height: 1.25;
+    }
+
+    th,
+    td {
+      padding: 12px 10px;
+      text-align: right;
+      vertical-align: top;
+      white-space: nowrap;
+    }
+
+    th:first-child,
+    td:first-child,
+    th:nth-child(2),
+    td:nth-child(2) {
+      text-align: left;
+    }
+
+    th {
+      background: var(--ink);
+      color: var(--reverse);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    tbody tr:nth-child(even) {
+      background: var(--paper);
+    }
+
+    .company-cell {
+      font-weight: 800;
+    }
+
+    .muted-cell {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.45;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      margin-top: 104px;
+      padding: 0 0 12px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    footer a {
+      color: var(--muted);
+      font-weight: 650;
+      text-decoration: none;
+      transition: color var(--ease);
+    }
+
+    footer a:hover {
+      color: var(--ink);
+    }
+
+    @media (max-width: 900px) {
+      section { display: block; margin-bottom: 68px; }
+      section > h2 { margin-bottom: 18px; }
+    }
+
+    @media (max-width: 640px) {
+      body { width: min(100% - 32px, var(--text-width)); }
+      header { min-height: 26vh; padding: 30px 0 34px; }
+      h1 { font-size: clamp(2.35rem, 10vw, 3.8rem); }
+      .subtitle { margin-top: 16px; }
+      .summary-grid, .cards, .metrics { grid-template-columns: 1fr; }
+      th, td { padding: 10px 8px; }
+      footer { flex-direction: column; align-items: flex-start; margin-top: 72px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Growth score</h1>
+    <p class="subtitle">A simple public-data view across fintech, software, marketplaces, AI and infrastructure companies.</p>
+  </header>
+
+  <main>
+    <section aria-labelledby="about-heading">
+      <h2 id="about-heading">About</h2>
+      <div>
+        <p class="note" id="method-note">This dashboard is a quick public-market screen across fintech, consumer internet, AI/data platforms, creative software, marketplaces and cloud infrastructure. It pulls the latest annual financials from Yahoo Finance via yfinance, then calculates YoY revenue growth, EBITDA margin, free-cash-flow margin, Rule of 40 and revenue multiple. Treat it as a first-pass comparison layer, not a full investment memo: yfinance can lag filings, and some international tickers may need manual checking.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="industry-heading">
+      <h2 id="industry-heading">Industry</h2>
+      <div class="industry-buttons" id="industry-buttons"></div>
+    </section>
+
+    <section aria-labelledby="snapshot-heading">
+      <h2 id="snapshot-heading">Snapshot</h2>
+      <div>
+        <p id="generated" class="meta">Loading metrics.json…</p>
+        <div class="summary-grid" id="summary"></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="comparison-heading">
+      <h2 id="comparison-heading">Compare</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Industry</th>
+              <th>Ticker</th>
+              <th>Market cap</th>
+              <th>Revenue</th>
+              <th>YoY growth</th>
+              <th>Gross margin</th>
+              <th>EBITDA</th>
+              <th>EBITDA margin</th>
+              <th>Free cash flow</th>
+              <th>FCF margin</th>
+              <th>Rule of 40</th>
+              <th>Revenue multiple</th>
+            </tr>
+          </thead>
+          <tbody id="comparison"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="companies-heading">
+      <h2 id="companies-heading">Companies</h2>
+      <div class="cards" id="companies"></div>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>© 2026 Jeison Sosa</span>
+    <a href="/">jsosa.xyz</a>
+  </footer>
+
+  <script>
+    const money = (value, currency) => {
+      if (value === null || value === undefined) return 'n/a';
+      const abs = Math.abs(value);
+      const unit = abs >= 1e12 ? 'tn' : abs >= 1e9 ? 'bn' : abs >= 1e6 ? 'mn' : '';
+      const divisor = unit === 'tn' ? 1e12 : unit === 'bn' ? 1e9 : unit === 'mn' ? 1e6 : 1;
+      const prefix = currency ? `${currency} ` : '';
+      return `${prefix}${(value / divisor).toFixed(abs >= 1e10 ? 1 : 2)}${unit}`;
+    };
+
+    const pct = value => value === null || value === undefined ? 'n/a' : `${value.toFixed(1)}%`;
+    const multiple = value => value === null || value === undefined ? 'n/a' : `${value.toFixed(2)}×`;
+    let activeIndustry = 'All';
+    let dashboardData = null;
+
+    const escapeHtml = value => String(value ?? '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+
+    const metric = (name, value) => `
+      <div class="metric">
+        <span class="metric-name">${name}</span>
+        <span class="metric-value">${value}</span>
+      </div>`;
+
+    const average = values => {
+      const clean = values.filter(v => typeof v === 'number');
+      if (!clean.length) return null;
+      return clean.reduce((a, b) => a + b, 0) / clean.length;
+    };
+
+    const renderIndustryButtons = data => {
+      const industries = ['All', ...new Set(data.companies.map(c => c.industry || 'Uncategorised'))];
+      document.getElementById('industry-buttons').innerHTML = industries.map(industry => `
+        <button class="industry-button ${industry === activeIndustry ? 'active' : ''}" type="button" data-industry="${escapeHtml(industry)}">
+          ${escapeHtml(industry)}
+        </button>
+      `).join('');
+      document.querySelectorAll('.industry-button').forEach(button => {
+        button.addEventListener('click', () => {
+          activeIndustry = button.dataset.industry;
+          render(dashboardData);
+        });
+      });
+    };
+
+    const render = data => {
+      dashboardData = data;
+      renderIndustryButtons(data);
+      const visibleCompanies = activeIndustry === 'All'
+        ? data.companies
+        : data.companies.filter(c => (c.industry || 'Uncategorised') === activeIndustry);
+      const companies = [...visibleCompanies].sort((a, b) => (b.rule_of_40 ?? -999) - (a.rule_of_40 ?? -999));
+      document.getElementById('generated').textContent = data.generated_at ? `Generated ${new Date(data.generated_at).toLocaleString()} · ${activeIndustry}` : `No generated timestamp yet · ${activeIndustry}`;
+
+      const leader = companies[0];
+      const avgRule40 = average(companies.map(c => c.rule_of_40));
+      const avgMultiple = average(companies.map(c => c.revenue_multiple));
+      const avgGrowth = average(companies.map(c => c.revenue_growth_pct));
+      const avgFcfMargin = average(companies.map(c => c.fcf_margin_pct));
+
+      document.getElementById('summary').innerHTML = `
+        <div class="summary-card primary"><span class="label">Companies</span><span class="big-number">${companies.length}</span></div>
+        <div class="summary-card"><span class="label">Top Rule of 40</span><span class="big-number">${leader ? leader.ticker : 'n/a'}</span></div>
+        <div class="summary-card"><span class="label">Average Rule of 40</span><span class="big-number">${pct(avgRule40)}</span></div>
+        <div class="summary-card"><span class="label">Average revenue multiple</span><span class="big-number">${multiple(avgMultiple)}</span></div>
+        <div class="summary-card"><span class="label">Average FCF margin</span><span class="big-number">${pct(avgFcfMargin)}</span></div>
+      `;
+
+      document.getElementById('comparison').innerHTML = companies.map(c => `
+        <tr>
+          <td class="company-cell">${escapeHtml(c.name)}<div class="muted-cell">${escapeHtml(c.category)}</div></td>
+          <td>${escapeHtml(c.industry || 'Uncategorised')}</td>
+          <td>${escapeHtml(c.ticker)}</td>
+          <td>${money(c.market_cap, c.currency)}</td>
+          <td>${money(c.revenue, c.currency)}</td>
+          <td>${pct(c.revenue_growth_pct)}</td>
+          <td>${pct(c.gross_margin_pct)}</td>
+          <td>${money(c.ebitda, c.currency)}</td>
+          <td>${pct(c.ebitda_margin_pct)}</td>
+          <td>${money(c.free_cash_flow, c.currency)}</td>
+          <td>${pct(c.fcf_margin_pct)}</td>
+          <td>${pct(c.rule_of_40)}</td>
+          <td>${multiple(c.revenue_multiple)}</td>
+        </tr>
+      `).join('');
+
+      document.getElementById('companies').innerHTML = companies.map((c, index) => `
+        <article class="company-card ${index === 0 ? 'leader' : ''}">
+          <div class="company-head">
+            <div>
+              <span class="company-name">${escapeHtml(c.name)}</span>
+              <div class="category">${escapeHtml(c.category)}</div>
+            </div>
+            <span class="ticker">${escapeHtml(c.ticker)}</span>
+          </div>
+          <div class="metrics">
+            ${metric('Market cap', money(c.market_cap, c.currency))}
+            ${metric('Revenue', money(c.revenue, c.currency))}
+            ${metric('YoY growth', pct(c.revenue_growth_pct))}
+            ${metric('EBITDA margin', pct(c.ebitda_margin_pct))}
+            ${metric('Free cash flow', money(c.free_cash_flow, c.currency))}
+            ${metric('FCF margin', pct(c.fcf_margin_pct))}
+            ${metric('Rule of 40', pct(c.rule_of_40))}
+            ${metric('Revenue multiple', multiple(c.revenue_multiple))}
+          </div>
+        </article>
+      `).join('');
+    };
+
+    fetch('metrics.json')
+      .then(response => {
+        if (!response.ok) throw new Error(`Could not load metrics.json (${response.status})`);
+        return response.json();
+      })
+      .then(render)
+      .catch(error => {
+        document.getElementById('generated').textContent = error.message;
+      });
+  </script>
+</body>
+</html>
