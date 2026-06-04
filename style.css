@@ -271,6 +271,136 @@ footer a {
   opacity: 0.74;
 }
 
+/* Weekly */
+
+.weekly-issue-list,
+.weekly-format-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.weekly-format-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.weekly-empty-state,
+.weekly-issue-featured,
+.weekly-issue-archive,
+.weekly-format-card {
+  padding: 18px;
+  border-radius: var(--radius);
+  background: var(--wash);
+  color: var(--ink);
+}
+
+.weekly-issue-featured {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  background: var(--ink);
+  color: var(--reverse);
+  text-decoration: none;
+}
+
+.weekly-issue-featured:hover {
+  color: var(--reverse);
+  transform: translateY(-2px);
+}
+
+.weekly-issue-featured strong {
+  display: block;
+  max-width: 17ch;
+  font-family: 'Familjen Grotesk', 'IBM Plex Sans', sans-serif;
+  font-size: clamp(1.75rem, 3.4vw, 3rem);
+  font-weight: 700;
+  line-height: 0.98;
+}
+
+.weekly-issue-meta {
+  color: currentColor;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  opacity: 0.68;
+  text-transform: uppercase;
+}
+
+.weekly-issue-archive {
+  display: grid;
+  gap: 8px;
+}
+
+.weekly-archive-item {
+  display: grid;
+  grid-template-columns: 128px minmax(0, 1fr);
+  align-items: baseline;
+  gap: 18px;
+  padding: 10px 0;
+  text-decoration: none;
+}
+
+.weekly-archive-item span:last-child {
+  font-size: clamp(1.05rem, 1.75vw, 1.35rem);
+  font-weight: 750;
+  line-height: 1.08;
+}
+
+.weekly-archive-item:hover {
+  color: var(--muted);
+}
+
+.weekly-empty-state {
+  grid-column: 1 / -1;
+  background: var(--ink);
+  color: var(--reverse);
+}
+
+.weekly-empty-state h3 {
+  margin: 16px 0 10px;
+  font-size: clamp(1.55rem, 3vw, 2.5rem);
+}
+
+.weekly-empty-state p {
+  max-width: 54ch;
+  color: currentColor;
+  opacity: 0.72;
+}
+
+.weekly-empty-kicker,
+.weekly-format-card span {
+  display: block;
+  color: currentColor;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  opacity: 0.68;
+  text-transform: uppercase;
+}
+
+.weekly-format-card {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.weekly-format-card:nth-child(odd) {
+  background: var(--ink);
+  color: var(--reverse);
+}
+
+.weekly-format-card:last-child {
+  grid-column: 1 / -1;
+}
+
+.weekly-format-card p {
+  color: currentColor;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.38;
+  opacity: 0.78;
+}
+
 /* Articles */
 
 .back-link {
@@ -746,6 +876,8 @@ footer a:hover {
   }
 
   .project-list,
+  .weekly-issue-list,
+  .weekly-format-grid,
   .wiki-card-list,
   .wiki-card-list.compact,
   .wiki-related ul {
@@ -757,7 +889,8 @@ footer a:hover {
     min-height: 0;
   }
 
-  .post-item {
+  .post-item,
+  .weekly-archive-item {
     grid-template-columns: 1fr;
     gap: 0;
     padding: 9px 0;
