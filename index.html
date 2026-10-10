@@ -6,71 +6,222 @@
     <meta name="description" content="Jeison Sosa's website">
     <meta name="author" content="Jeison Sosa">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="./style.css?v=weekly">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap">
+    <style>
+      :root {
+        --paper: #fdfdfc;
+        --ink: #050505;
+        --muted: #646464;
+        --list-label-width: 64px;
+        --list-column-gap: 22px;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        background: var(--paper);
+        color: var(--ink);
+        text-rendering: optimizeLegibility;
+      }
+
+      body {
+        max-width: 480px;
+        margin: 0 auto;
+        padding: 72px 24px 60px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', system-ui, sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      ::selection {
+        background: var(--ink);
+        color: var(--paper);
+      }
+
+      header {
+        margin-bottom: 40px;
+      }
+
+      main {
+        display: grid;
+        gap: 40px;
+      }
+
+      section {
+        display: grid;
+        gap: 16px;
+      }
+
+      h1,
+      h2,
+      h3,
+      p,
+      ul {
+        margin: 0;
+      }
+
+      h1,
+      h2 {
+        font-weight: 600;
+        line-height: 1.5;
+      }
+
+      h1 {
+        font-size: 16px;
+      }
+
+      h2 {
+        font-size: 14px;
+      }
+
+      p {
+        text-wrap: pretty;
+      }
+
+      a {
+        color: inherit;
+        font-weight: 500;
+        text-decoration: none;
+        text-decoration-thickness: 0.08em;
+        text-underline-offset: 0.18em;
+      }
+
+      a:hover {
+        color: var(--muted);
+        text-decoration-line: underline;
+      }
+
+      a:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 4px;
+      }
+
+      .home-projects,
+      .home-posts {
+        display: grid;
+        gap: 16px;
+        padding: 0;
+        list-style: none;
+      }
+
+      .home-projects {
+        margin-left: calc(var(--list-label-width) + var(--list-column-gap));
+      }
+
+      .home-projects a,
+      .home-posts a {
+        display: block;
+      }
+
+      .home-projects p,
+      .home-posts time {
+        margin-top: 2px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .writing-group {
+        display: grid;
+        grid-template-columns: var(--list-label-width) minmax(0, 1fr);
+        gap: var(--list-column-gap);
+        align-items: start;
+      }
+
+      .writing-year,
+      .home-posts time {
+        font-size: 12px;
+        font-weight: 400;
+      }
+
+      .writing-year {
+        margin-top: 3px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .home-posts time {
+        display: block;
+      }
+
+      @media (max-width: 560px) {
+        body {
+          --list-label-width: 48px;
+          --list-column-gap: 12px;
+          padding: 40px 22px;
+        }
+      }
+    </style>
   </head>
   <body class="site-home">
     <header>
       <h1>Jeison Sosa</h1>
-      <p class="subtitle">Senior Product Manager</p>
-      <hr class="header-rule">
     </header>
 
-    <section id="about">
-      <h2>About</h2>
-      <p>I'm a Senior Product Manager at <a href="https://dojo.tech">Dojo</a>. In the past, I worked at the <a href="https://www.ft.com">FT</a> and <a href="https://www.fathom.global">Fathom</a>. I've gained experience in payments, news media, and climate-tech. I'm passionate about building products, revenue growth and venture capital. I hold a <a href="https://scholar.google.com/citations?user=kTGvKsMAAAAJ">PhD</a> in Physical Geography. Connect on <a href="https://github.com/jsosa">GitHub</a>, <a href="https://x.com/jsosaxyz">X</a>, <a href="https://www.linkedin.com/in/jsosaxyz/">LinkedIn</a> or reach me at <span style="user-select: none; -webkit-user-select: none; -moz-user-select: none;">me@jsosa.xyz</span></p>
-    </section>
+    <main>
+      <section id="about" aria-labelledby="about-title">
+        <h2 id="about-title">About me</h2>
+        <p>I'm a Senior Product Manager at <a href="https://dojo.tech">Dojo</a>. In the past, I worked at the <a href="https://www.ft.com">FT</a> and <a href="https://www.fathom.global">Fathom</a>. I've gained experience in payments, news media, and climate-tech. I'm passionate about building products, revenue growth and venture capital. I hold a <a href="https://scholar.google.com/citations?user=kTGvKsMAAAAJ">PhD</a> in Physical Geography.</p>
+        <p>Connect on <a href="https://github.com/jsosa">GitHub</a>, <a href="https://x.com/jsosaxyz">X</a>, <a href="https://www.linkedin.com/in/jsosaxyz/">LinkedIn</a> or reach me at <a href="mailto:me@jsosa.xyz">me@jsosa.xyz</a>.</p>
+      </section>
 
-    <section id="projects">
-      <h2>Projects</h2>
-      <div class="project-list">
-        <a class="project-item" href="wiki/">
-          <span class="project-title">Wiki</span>
-          <span class="project-description">A public map of concepts, companies, people, markets, and operating ideas I'm learning from.</span>
-        </a>
-        <a class="project-item" href="weekly/">
-          <span class="project-title">The Weekly</span>
-          <span class="project-description">A weekly operator newsletter on podcasts, markets, AI, GTM, and company-building signal.</span>
-        </a>
-        <a class="project-item" href="profitable.html">
-          <span class="project-title">Profitable</span>
-          <span class="project-description">A lightweight calculator for modelling profit, margin, and unit economics.</span>
-        </a>
-        <a class="project-item" href="growth-score/">
-          <span class="project-title">Growth score</span>
-          <span class="project-description">A public-company dashboard for comparing growth, margins, cash flow, Rule of 40, and revenue multiples across industries.</span>
-        </a>
-      </div>
-    </section>
+      <section id="projects" aria-labelledby="projects-title">
+        <h2 id="projects-title">Projects</h2>
+        <ul class="home-projects">
+          <li>
+            <a href="wiki/">Wiki</a>
+            <p>A public map of concepts, companies, people, markets, and operating ideas I'm learning from.</p>
+          </li>
+          <li>
+            <a href="weekly/">The Weekly</a>
+            <p>A weekly operator newsletter on podcasts, markets, AI, GTM, and company-building signal.</p>
+          </li>
+          <li>
+            <a href="profitable.html">Profitable</a>
+            <p>A lightweight calculator for modelling profit, margin, and unit economics.</p>
+          </li>
+          <li>
+            <a href="growth-score/">Growth score</a>
+            <p>A public-company dashboard for comparing growth, margins, cash flow, Rule of 40, and revenue multiples across industries.</p>
+          </li>
+        </ul>
+      </section>
 
-    <section id="writing">
-      <h2>Writing</h2>
-      <div class="post-list">
-        <div class="post-item">
-          <span class="post-date">29 May 2026</span>
-          <a href="building-a-public-wiki.html">Building a public wiki</a>
+      <section id="writing" aria-labelledby="writing-title">
+        <h2 id="writing-title">Writing</h2>
+        <div class="writing-group">
+          <h3 class="writing-year" id="writing-2026">2026</h3>
+          <ul class="home-posts" aria-labelledby="writing-2026">
+            <li>
+              <a href="building-a-public-wiki.html">Building a public wiki</a>
+              <time datetime="2026-05-29">May 29</time>
+            </li>
+            <li>
+              <a href="hermes-on-my-desk.html">Hermes as local infrastructure</a>
+              <time datetime="2026-05-26">May 26</time>
+            </li>
+            <li>
+              <a href="ai-moving-to-your-device.html">Why AI is moving to your device</a>
+              <time datetime="2026-04-24">April 24</time>
+            </li>
+            <li>
+              <a href="shape-of-modern-warfare.html">The shape of warfare</a>
+              <time datetime="2026-04-17">April 17</time>
+            </li>
+            <li>
+              <a href="nuclear-reversal.html">The nuclear reversal</a>
+              <time datetime="2026-04-16">April 16</time>
+            </li>
+          </ul>
         </div>
-        <div class="post-item">
-          <span class="post-date">26 May 2026</span>
-          <a href="hermes-on-my-desk.html">Hermes as local infrastructure</a>
-        </div>
-        <div class="post-item">
-          <span class="post-date">24 Apr 2026</span>
-          <a href="ai-moving-to-your-device.html">Why AI is moving to your device</a>
-        </div>
-        <div class="post-item">
-          <span class="post-date">17 Apr 2026</span>
-          <a href="shape-of-modern-warfare.html">The shape of warfare</a>
-        </div>
-        <div class="post-item">
-          <span class="post-date">16 Apr 2026</span>
-          <a href="nuclear-reversal.html">The nuclear reversal</a>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <span>© 2026 Jeison Sosa</span>
-      <a href="/">jsosa.xyz</a>
-    </footer>
+      </section>
+    </main>
   </body>
 </html>
