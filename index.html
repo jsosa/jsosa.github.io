@@ -31,11 +31,11 @@
       }
 
       body {
-        max-width: 480px;
+        max-width: 598px; /* 550px of content plus 24px padding on each side. */
         margin: 0 auto;
         padding: 72px 24px 60px;
         font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', system-ui, sans-serif;
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 400;
         line-height: 1.7;
         -webkit-font-smoothing: antialiased;
@@ -70,19 +70,12 @@
 
       h1,
       h2 {
+        font-size: inherit;
         font-weight: 600;
         line-height: 1.5;
       }
 
-      h1 {
-        font-size: 16px;
-      }
-
-      h2 {
-        font-size: 14px;
-      }
-
-      p {
+      .home-projects p {
         text-wrap: pretty;
       }
 
@@ -96,6 +89,11 @@
 
       a:hover {
         color: var(--muted);
+        text-decoration-line: underline;
+      }
+
+      #about a {
+        font-weight: 400;
         text-decoration-line: underline;
       }
 
@@ -117,7 +115,8 @@
       }
 
       .home-projects a,
-      .home-posts a {
+      .home-posts a,
+      .home-posts time {
         display: block;
       }
 
@@ -147,10 +146,6 @@
         line-height: 1.5;
       }
 
-      .home-posts time {
-        display: block;
-      }
-
       @media (max-width: 560px) {
         body {
           --list-label-width: 48px;
@@ -169,7 +164,7 @@
       <section id="about" aria-labelledby="about-title">
         <h2 id="about-title">About me</h2>
         <p>I'm a Senior Product Manager at <a href="https://dojo.tech">Dojo</a>. In the past, I worked at the <a href="https://www.ft.com">FT</a> and <a href="https://www.fathom.global">Fathom</a>. I've gained experience in payments, news media, and climate-tech. I'm passionate about building products, revenue growth and venture capital. I hold a <a href="https://scholar.google.com/citations?user=kTGvKsMAAAAJ">PhD</a> in Physical Geography.</p>
-        <p>Connect on <a href="https://github.com/jsosa">GitHub</a>, <a href="https://x.com/jsosaxyz">X</a>, <a href="https://www.linkedin.com/in/jsosaxyz/">LinkedIn</a> or reach me at <a href="mailto:me@jsosa.xyz">me@jsosa.xyz</a>.</p>
+        <p>Connect on <a href="https://github.com/jsosa">github</a>, <a href="https://x.com/jsosaxyz">X</a>, <a href="https://www.linkedin.com/in/jsosaxyz/">linkedin</a> or reach me at <a href="mailto:me@jsosa.xyz">me@jsosa.xyz</a>.</p>
       </section>
 
       <section id="projects" aria-labelledby="projects-title">
